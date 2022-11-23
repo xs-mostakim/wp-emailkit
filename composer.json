@@ -1,0 +1,20 @@
+{
+    "name": "mim/emailkit",
+    "description": "Email Template Kit is an customize email template builder for various plugin",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "xs-mustakim",
+            "email": "mim@xpeedstudio.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "EmailKit\\": "includes/"
+        },
+        "files": []
+    }
+}
