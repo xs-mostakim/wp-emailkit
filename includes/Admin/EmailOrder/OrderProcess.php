@@ -16,7 +16,6 @@ class OrderProcess {
     public function newOrder($order_id, $order) {
         
         $data = $this->getPostMeta();
-        error_log("Hello");
         if ($data) {
             $postMeta = get_post_meta($data->post->ID,  "email-template-html", true);
             $search = ["{{order_id}}", "{{order_date}}"];
