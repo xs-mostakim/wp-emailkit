@@ -5,49 +5,56 @@ use WP_Query;
 
 defined('ABSPATH') || exit;
 
-class NewOrder {
+class NewOrder
+{
+  /**
+   * User Registration class
+   */
 
-    public function __construct()
-    {
-       
-       add_action('woocommerce_email', [$this,'remove_woocommerce_emails']);
-       add_filter('woocommerce_order_status_pending_to_processing_notification',[$this,'newOrder'],10,2); 
-    }
+  public function __construct()
+  {
 
-    public function remove_woocommerce_emails($email_class) {
+    add_action('woocommerce_email', [$this, 'removeEmailsNewOrders']);
+    add_filter('woocommerce_order_status_pending_to_processing_notification', [$this, 'newOrderEmail'], 10, 2);
+  }
 
-      remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $email_class->emails['WC_Email_New_Order'], 'trigger' ) );
-      remove_action( 'woocommerce_order_status_pending_to_completed_notification', array( $email_class->emails['WC_Email_New_Order'], 'trigger' ) );
-      remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $email_class->emails['WC_Email_New_Order'], 'trigger' ) );
-      remove_action( 'woocommerce_order_status_failed_to_processing_notification', array( $email_class->emails['WC_Email_New_Order'], 'trigger' ) );
-      remove_action( 'woocommerce_order_status_failed_to_completed_notification', array( $email_class->emails['WC_Email_New_Order'], 'trigger' ) );
-      remove_action( 'woocommerce_order_status_failed_to_on-hold_notification', array( $email_class->emails['WC_Email_New_Order'], 'trigger' ) );
-      remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $email_class->emails['WC_Email_Customer_Processing_Order'], 'trigger' ) );
-		  remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $email_class->emails['WC_Email_Customer_Processing_Order'], 'trigger' ) );
-    }
+  /**
+   * remove action to disable default mail 
+   */
+
+  public function removeEmailsNewOrders($email_class)
+  {
+    remove_action('woocommerce_order_status_pending_to_processing_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
+    remove_action('woocommerce_order_status_pending_to_completed_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
+    remove_action('woocommerce_order_status_pending_to_on-hold_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
+    remove_action('woocommerce_order_status_failed_to_processing_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
+    remove_action('woocommerce_order_status_failed_to_completed_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
+    remove_action('woocommerce_order_status_failed_to_on-hold_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
+  }
 
 
-    public function newOrder($order_id, $order) {
-        
-        $args = array(
-            'post_type'  => 'email',
-            'meta_query' => array(
-              array(
-                'key'     => 'email-template-type',
-                'value'   => 'wc_admin_new_order',
-              ),
-              array(
-                'key'     => 'email-template-status',
-                'value'   => true,
-              ),
-            ),
-          );
-          $query = new WP_Query ($args);
-          $email = get_option('admin_email');
+  public function newOrderEmail($order_id, $order)
+  {
+
+    $args = array(
+      'post_type'  => 'email',
+      'meta_query' => array(
+        array(
+          'key'     => 'email-template-type',
+          'value'   => 'wc_admin_new_order',
+        ),
+        array(
+          'key'     => 'email-template-status',
+          'value'   => true,
+        ),
+      ),
+    );
+    $query = new WP_Query($args);
+    $email = get_option('admin_email');
     if (isset($query->posts[0])) {
       $html  = get_post_meta($query->posts[0]->ID, 'email-template-html')[0];
       $tbody = substr($html, strpos($html, 'tbody'));
-      $row = substr($tbody, strpos($tbody, '<tr'), strpos($tbody, '</tbody>')- strpos($tbody, '<tr>'));
+      $row = substr($tbody, strpos($tbody, '<tr'), strpos($tbody, '</tbody>') - strpos($tbody, '<tr>'));
       $rows = '';
 
       // Iterating through each WC_Order_Item_Product objects
@@ -88,19 +95,15 @@ class NewOrder {
       $message  = str_replace(array_keys($details), array_values($details), $html);
     }
 
-        $to =  get_option('admin_email');
-        $subject =str_replace(array_keys($details), array_values($details),  get_post_meta($query->posts[0]->ID, 'email-template-subject')[0]);
-        $headers = [
-        'From: ' . $email . "\r\n",
-        'Reply-To: ' . $email . "\r\n",
-        'Content-Type: text/html; charset=UTF-8'
-        ];
+    $to =  get_option('admin_email');
+    $subject = str_replace(array_keys($details), array_values($details),  get_post_meta($query->posts[0]->ID, 'email-template-subject')[0]);
+    $headers = [
+      'From: ' . $email . "\r\n",
+      'Reply-To: ' . $email . "\r\n",
+      'Content-Type: text/html; charset=UTF-8'
+    ];
 
-        wp_mail($to, $subject, $message, $headers);
-    }
-
-    
-
-
+    wp_mail($to, $subject, $message, $headers);
+  }
 }
 
