@@ -14,9 +14,9 @@ class Admin {
     public function __construct() {
         new Admin\CPT();
 		new Admin\MetaBox();
-        new Admin\EmailConfig();
-        new Admin\EmailOrder\NewUserRegister();
-        new Admin\EmailOrder\OrderProcess();
+        new Admin\Emails\EmailConfig();
+        new Admin\Emails\NewUserRegister();
+        new Admin\Emails\Woocommerce\NewOrder();
 
     }
 	
