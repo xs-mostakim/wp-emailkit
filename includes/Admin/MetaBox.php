@@ -67,6 +67,7 @@ class MetaBox
             <label for="email-template-type" style="font-weight:bold">Email Template Types</label> <br> <br>
 
             <select name="email-template-type" style="width:100% !important;">
+            <option value="">Select Template Types </option>
                 <?php
 
                 foreach ($this->template_types as $key => $template_type) {

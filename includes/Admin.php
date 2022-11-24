@@ -17,6 +17,7 @@ class Admin {
         new Admin\Emails\EmailConfig();
         new Admin\Emails\NewUserRegister();
         new Admin\Emails\Woocommerce\NewOrder();
+        new Admin\Emails\Woocommerce\CustomerOrder();
 
     }
 	
