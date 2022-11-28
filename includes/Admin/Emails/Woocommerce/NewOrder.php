@@ -14,7 +14,7 @@ class NewOrder
   public function __construct()
   {
 
-    add_action('woocommerce_email', [$this, 'removeEmailsNewOrders']);
+    add_action('woocommerce_email', [$this, 'removeOrders']);
     add_filter('woocommerce_order_status_pending_to_processing_notification', [$this, 'newOrderEmail'], 10, 2);
   }
 
@@ -22,19 +22,17 @@ class NewOrder
    * remove action to disable default mail 
    */
 
-  public function removeEmailsNewOrders($email_class)
+  public function removeOrders($email_class)
   {
-    remove_action('woocommerce_order_status_pending_to_processing_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
-    remove_action('woocommerce_order_status_pending_to_completed_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
-    remove_action('woocommerce_order_status_pending_to_on-hold_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
-    remove_action('woocommerce_order_status_failed_to_processing_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
-    remove_action('woocommerce_order_status_failed_to_completed_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
-    remove_action('woocommerce_order_status_failed_to_on-hold_notification', [$email_class->emails['WC_Email_New_Order'], 'trigger']);
+
+    remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $email_class->emails['WC_Email_New_Order'], 'trigger' ) );
+
   }
 
 
   public function newOrderEmail($order_id, $order)
   {
+    error_log("Hello");
 
     $args = array(
       'post_type'  => 'email',
@@ -69,6 +67,7 @@ class NewOrder
 
       $details = [
         "{{order_id}}" => $order_id,
+        "{{order_date}}" =>$order->order_date,
         "{{shipping_method}}" => $order->shipping_method,
         "{{payment_method}}" => $order->payment_method_title,
         "{{total}}" => $order->total,
@@ -81,6 +80,7 @@ class NewOrder
         "{{billing_state}}" => $order->billing_state,
         "{{billing_postcode}}" => $order->billing_postcode,
         "{{billing_country}}" => $order->billing_country,
+        "{{billing_email}}"    =>$order->billing_email,
         "{{shipping_first_name}}" => $order->shipping_first_name,
         "{{shipping_last_name}}" => $order->shipping_last_name,
         "{{shipping_company}}" => $order->shipping_company,
@@ -90,6 +90,7 @@ class NewOrder
         "{{shipping_state}}" => $order->shipping_state,
         "{{shipping_postcode}}" => $order->shipping_postcode,
         "{{shipping_country}}" => $order->shipping_country,
+        "{{shipping_email}}"   => $order->shipping_email,
       ];
 
       $message  = str_replace(array_keys($details), array_values($details), $html);

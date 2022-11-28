@@ -1,6 +1,7 @@
 <?php
 
 namespace EmailKit\Admin;
+use EmailKit\Admin\Emails\Helpers\Utils;
 
 use WP_Query;
 
@@ -61,7 +62,7 @@ class MetaBox
 
             <label for="email-template-html" style="font-weight:bold">Email Template HTML</label> <br><br>
 
-            <textarea rows="10" cols="20" name="email-template-html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email-template-html", true)); ?></textarea>
+            <textarea rows="10" cols="50" name="email-template-html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email-template-html", true)); ?></textarea>
             <br> <br>
 
             <label for="email-template-type" style="font-weight:bold">Email Template Types</label> <br> <br>
@@ -104,7 +105,8 @@ class MetaBox
         }
 
         if (isset($_POST['email-template-html'])) {
-            update_post_meta($post_id, 'email-template-html', sanitize_textarea_field($_POST['email-template-html']));
+            $template_html = Utils::kses($_POST['email-template-html']);
+            update_post_meta($post_id, 'email-template-html', $template_html);
         }
         $email_template_type = sanitize_text_field($_POST['email-template-type']);
         if (isset($_POST['email-template-type']) && isset($this->template_types[$email_template_type])) {

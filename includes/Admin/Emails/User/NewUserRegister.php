@@ -1,6 +1,6 @@
 <?php
 
-namespace EmailKit\Admin\Emails;
+namespace EmailKit\Admin\Emails\User;
 
 use WP_Query;
 

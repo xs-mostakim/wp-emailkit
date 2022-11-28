@@ -15,9 +15,15 @@ class Admin {
         new Admin\CPT();
 		new Admin\MetaBox();
         new Admin\Emails\EmailConfig();
-        new Admin\Emails\NewUserRegister();
+        new Admin\Emails\User\NewUserRegister();
         new Admin\Emails\Woocommerce\NewOrder();
-        new Admin\Emails\Woocommerce\CustomerOrder();
+        new Admin\Emails\Woocommerce\ProcessingOrder();
+        new Admin\Emails\User\PasswordChange();
+        new Admin\Emails\Woocommerce\CancelledOrder();
+        new Admin\Emails\Woocommerce\FailedOrder();
+        new Admin\Emails\Woocommerce\OrderOnHold();
+        new Admin\Emails\Woocommerce\CompletedOrder();
+        new Admin\Emails\Woocommerce\RefundOrder();
 
     }
 	

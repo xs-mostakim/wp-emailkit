@@ -5,26 +5,23 @@ use WP_Query;
 
 defined('ABSPATH') || exit;
 
-class CustomerOrder {
+class ProcessingOrder {
 
 	public function __construct()
 	{
 
-		add_action('woocommerce_email',[$this,'removeNewOrderEmail']);
-		add_filter('woocommerce_order_status_pending_to_processing_notification',[$this,'customerOrderEmail'],10,2);
+		add_action('woocommerce_email',[$this,'remove_processEmail']);
+		add_filter('woocommerce_order_status_pending_to_processing_notification',[$this,'processOrderEmail'],10,2);
 		
 	}
 
-	public function removeNewOrderEmail ($email_class) {
-
-	remove_action('woocommerce_order_status_cancelled_to_processing_notification', [$email_class->emails['WC_Email_Customer_Processing_Order'], 'trigger']);
-    remove_action('woocommerce_order_status_failed_to_processing_notification', [$email_class->emails['WC_Email_Customer_Processing_Order'], 'trigger']);
-    remove_action('woocommerce_order_status_on-`hold_to_processing_notification', [$email_class->emails['WC_Email_Customer_Processing_Order'], 'trigger']);
-    remove_action('woocommerce_order_status_pending_to_processing_notification', [$email_class->emails['WC_Email_Customer_Processing_Order'], 'trigger']);
+	public function remove_processEmail ($email_class) {
+        
+		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $email_class->emails['WC_Email_Customer_Processing_Order'], 'trigger'));
 
 	}
     
-	public function customerOrderEmail ($order_id, $order) {
+	public function processOrderEmail ($order_id, $order) {
 		
 		$args = array(
 			'post_type'  => 'email',
@@ -58,6 +55,7 @@ class CustomerOrder {
 		  	$html = str_replace($row, $rows, $html);
 		  	$details = [
 			"{{order_id}}" => $order_id,
+			"{{order_date}}" =>$order->order_date,
 			"{{shipping_method}}" => $order->shipping_method,
 			"{{payment_method}}" => $order->payment_method_title,
 			"{{total}}" => $order->total,
@@ -70,6 +68,7 @@ class CustomerOrder {
 			"{{billing_state}}" => $order->billing_state,
 			"{{billing_postcode}}" => $order->billing_postcode,
 			"{{billing_country}}" => $order->billing_country,
+			"{{billing_email}}"    =>$order->billing_email,
 			"{{shipping_first_name}}" => $order->shipping_first_name,
 			"{{shipping_last_name}}" => $order->shipping_last_name,
 			"{{shipping_company}}" => $order->shipping_company,
