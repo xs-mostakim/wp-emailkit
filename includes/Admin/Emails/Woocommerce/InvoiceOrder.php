@@ -1,34 +1,31 @@
 <?php 
+
 namespace EmailKit\Admin\Emails\Woocommerce;
 
 use WP_Query;
 
 defined("ABSPATH") || exit;
 
-class RefundOrder {
+class InvoiceOrder {
 
 	public function __construct()
 	{
 		add_action('woocommerce_email', [$this,'remove_woocommerce_emails']);
-		add_filter('woocommerce_order_status_refunded',[$this,'orderRefund'],10,2);
+		add_filter('woocommerce_email_recipient_customer_invoice',[$this,'invoiceEmail'],10,2);
 	}
 
 	public function remove_woocommerce_emails($email_class) {
 
-		remove_action( 'woocommerce_order_status_refunded', array( $email_class->emails['WC_Email_Customer_Refunded_Order'], 'trigger'));
-		remove_action( 'woocommerce_order_fully_refunded_notification', array( $email_class->emails['WC_Email_Customer_Refunded_Order'], 'trigger'));
-		remove_action( 'woocommerce_order_partially_refunded_notification', array( $email_class->emails['WC_Email_Customer_Refunded_Order'], 'trigger'));
+		remove_action('woocommerce_email_recipient_customer_invoice',array( $email_class->emails['WC_Email_Customer_Invoice'], 'trigger'));
+	}
 
-	} 
-
-	public function orderRefund($order_id,$order) {
-
+	public function invoiceEmail($order_id,$order) {
 		$args = array(
             'post_type'  => 'email',
             'meta_query' => array(
               array(
                 'key'     => 'email-template-type',
-                'value'   => 'wc_refunded_order',
+                'value'   => 'wc_customer_invoice_or_order_details',
               ),
               array(
                 'key'     => 'email-template-status',
@@ -93,6 +90,5 @@ class RefundOrder {
 		];
 
 		wp_mail($to, $subject, $message, $headers);
-
-	} 
+	}
 }

@@ -14,7 +14,7 @@ class NewOrder
   public function __construct()
   {
 
-    add_action('woocommerce_email', [$this, 'removeOrders']);
+    add_action('woocommerce_email', [$this, 'remove_woocommerce_emails']);
     add_filter('woocommerce_order_status_pending_to_processing_notification', [$this, 'newOrderEmail'], 10, 2);
   }
 
@@ -22,10 +22,14 @@ class NewOrder
    * remove action to disable default mail 
    */
 
-  public function removeOrders($email_class)
+  public function remove_woocommerce_emails($email_class)
   {
 
-    remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $email_class->emails['WC_Email_New_Order'], 'trigger' ) );
+    remove_action( 'woocommerce_order_status_pending_to_processing_notification',  array( $email_class->emails['WC_Email_New_Order'], 'trigger' ));
+		remove_action( 'woocommerce_order_status_failed_to_processing_notification',  array( $email_class->emails['WC_Email_New_Order'], 'trigger' ));
+		remove_action( 'woocommerce_order_status_cancelled_to_processing_notification',  array( $email_class->emails['WC_Email_New_Order'], 'trigger' ));
+		remove_action( 'woocommerce_order_status_on-hold_to_processing_notification',  array( $email_class->emails['WC_Email_New_Order'], 'trigger') );
+
 
   }
 

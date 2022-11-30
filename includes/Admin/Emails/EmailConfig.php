@@ -10,13 +10,13 @@ class EmailConfig {
 
 	}
 
-    public function mailtrap($phpmailer) {
+    function mailtrap($phpmailer) {
         $phpmailer->isSMTP();
         $phpmailer->Host = 'smtp.mailtrap.io';
         $phpmailer->SMTPAuth = true;
         $phpmailer->Port = 2525;
-        $phpmailer->Username = 'a4f072b64a1b63';
-        $phpmailer->Password = '97c22d3253f51e';
+        $phpmailer->Username = '385fd4acab0c89';
+        $phpmailer->Password = '6cf33716946c78';
     }
 
     
