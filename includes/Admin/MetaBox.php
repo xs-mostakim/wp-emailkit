@@ -30,9 +30,7 @@ class MetaBox
             "wc_customer_note"                     => "Customer Note",
             "wc_reset_password"                    => "Reset Password",
             "wc_new_account"                       => "New Account",
-            "password_change"                      => "Password Change",
             "new_user_register"                    => "New User Register",
-            "delete_user"                          => "Delete User"
         ];
 
         add_action('add_meta_boxes', [$this, 'add']);
@@ -60,11 +58,6 @@ class MetaBox
             <input type="text" name="email-template-subject" size="30"  style="width:100% !important;" value="<?php echo esc_html(get_post_meta($object->ID, "email-template-subject", true)); ?>"> 
             <br> <br>
 
-            <label for="email-template-html" style="font-weight:bold">Email Template HTML</label> <br><br>
-
-            <textarea rows="10" cols="50" name="email-template-html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email-template-html", true)); ?></textarea>
-            <br> <br>
-
             <label for="email-template-type" style="font-weight:bold">Email Template Types</label> <br> <br>
 
             <select name="email-template-type" style="width:100% !important;">
@@ -77,6 +70,12 @@ class MetaBox
                         <?php echo esc_attr($template_type); ?> </option>
                 <?php } ?>
             </select> <br> <br>
+
+            <label for="email-template-html" style="font-weight:bold">Email Template HTML</label> <br><br>
+
+            <textarea rows="10" cols="50" name="email-template-html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email-template-html", true)); ?></textarea>
+            <br> <br>
+
 
             <label for="email-template-status" style="font-weight:bold">Status(Active/Inactive): </label>
             <?php
@@ -104,15 +103,17 @@ class MetaBox
             update_post_meta($post_id,'email-template-subject', sanitize_text_field($_POST['email-template-subject']));
         }
 
-        if (isset($_POST['email-template-html'])) {
-            $template_html = Utils::kses($_POST['email-template-html']);
-            update_post_meta($post_id, 'email-template-html', $template_html);
-        }
         $email_template_type = sanitize_text_field($_POST['email-template-type']);
         if (isset($_POST['email-template-type']) && isset($this->template_types[$email_template_type])) {
     
             update_post_meta($post_id, 'email-template-type', $email_template_type);
         }
+
+        if (isset($_POST['email-template-html'])) {
+            $template_html = Utils::kses($_POST['email-template-html']);
+            update_post_meta($post_id, 'email-template-html', $template_html);
+        }
+       
 
         if(isset($_POST["email-template-status"])){
             $type = $_POST["email-template-type"];

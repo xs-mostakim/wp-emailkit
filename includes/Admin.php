@@ -18,7 +18,6 @@ class Admin {
         new Admin\Emails\User\NewUserRegister();
         new Admin\Emails\Woocommerce\NewOrder();
         new Admin\Emails\Woocommerce\ProcessingOrder();
-        new Admin\Emails\User\PasswordChange();
         new Admin\Emails\Woocommerce\CancelledOrder();
         new Admin\Emails\Woocommerce\FailedOrder();
         new Admin\Emails\Woocommerce\OrderOnHold();

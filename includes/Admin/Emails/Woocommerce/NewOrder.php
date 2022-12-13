@@ -26,9 +26,6 @@ class NewOrder
   {
 
     remove_action( 'woocommerce_order_status_pending_to_processing_notification',  array( $email_class->emails['WC_Email_New_Order'], 'trigger' ));
-		remove_action( 'woocommerce_order_status_failed_to_processing_notification',  array( $email_class->emails['WC_Email_New_Order'], 'trigger' ));
-		remove_action( 'woocommerce_order_status_cancelled_to_processing_notification',  array( $email_class->emails['WC_Email_New_Order'], 'trigger' ));
-		remove_action( 'woocommerce_order_status_on-hold_to_processing_notification',  array( $email_class->emails['WC_Email_New_Order'], 'trigger') );
 
 
   }
