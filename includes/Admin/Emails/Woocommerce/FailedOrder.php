@@ -58,6 +58,7 @@ class FailedOrder {
 
 		    $details = [
 			"{{order_id}}" => $order_id,
+			"{{order_date}}" =>$order->order_date,
 			"{{shipping_method}}" => $order->shipping_method,
 			"{{payment_method}}" => $order->payment_method_title,
 			"{{total}}" => $order->total,
