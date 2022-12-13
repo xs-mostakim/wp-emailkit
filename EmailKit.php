@@ -4,7 +4,8 @@
  * Plugin Name: EmailKit
  * Plugin URI:  http://localhost/emailkit/wp-admin/
  * Description: EmailKit is the most-complete Email template builder for Elementor.
- * Author: MIM
+ * Author: XpeedStudio
+ * Version:0.1.0
  * Text Domain: emailkit
  * Domain Path: /languages
  * License:  GPLv3
@@ -34,6 +35,7 @@ final class EmailKit
     private function __construct()
     {
         $this->define_constants();
+        register_activation_hook(__FILE__, [$this, 'activate']);
 
         add_action('plugins_loaded', [$this, 'init_plugin']);
     }
@@ -62,7 +64,7 @@ final class EmailKit
      */
     public function define_constants()
     {
-
+        define('EMAILKIT_VERSION', '1.0');
         define('EMAILKIT_FILE', __FILE__);
         define('EMAILKIT_PATH', __DIR__);
         define('EMAILKIT_URL', plugins_url('', EMAILKIT_FILE));
@@ -79,17 +81,39 @@ final class EmailKit
         new EmailKit\Admin();
         
     }
+
+    /**
+     * Do stuff upon plugin activation
+     */
+    public function activate()
+    {
+        /**
+         * Save plugin installation time.
+         */
+
+        $installed = get_option('mk_installed');
+        if (!$installed) {
+            update_option('mk_installed', time());
+        }
+
+        /**
+         * Update plugin version.
+         * 
+         * @param string $option
+         */
+        update_option('emilkit_version', EMAILKIT_VERSION);
+    }
 }
-/**.
- * Initializes the main plugin
- *
- * @return \EmailKit
- */
-function emailKit()
-{
-    return EmailKit::init();
-}
+    /**.
+     * Initializes the main plugin
+     *
+     * @return \EmailKit
+     */
+    function emailKit()
+    {
+        return EmailKit::init();
+    }
 
 
-// kick-off the plugin
-EmailKit();
+    // kick-off the plugin
+    EmailKit();
