@@ -10,9 +10,7 @@ class RefundOrder {
 	public function __construct()
 	{
 		add_action('woocommerce_email', [$this,'remove_woocommerce_emails']);
-		add_filter('woocommerce_order_status_refunded',[$this,'orderRefund'],10,2);
-		add_filter('woocommerce_order_fully_refunded_notification',[$this,'orderRefund'],10,2);
-		add_filter('woocommerce_order_partially_refunded_notification',[$this,'orderRefund'],10,2);
+		add_filter('woocommerce_order_status_refunded',[$this,'orderRefund'],10,2);	
 	}
 
 	public function remove_woocommerce_emails($email_class) {
