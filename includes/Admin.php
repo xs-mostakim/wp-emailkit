@@ -26,6 +26,7 @@ class Admin {
         new Admin\Emails\Woocommerce\CustomerNote();
         new Admin\Emails\Woocommerce\InvoiceOrder();
         new Admin\Emails\Woocommerce\ResetPassword();
+        new Admin\Emails\Woocommerce\NewAccount();
 
     }
 	

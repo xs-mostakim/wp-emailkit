@@ -33,7 +33,6 @@ class NewOrder
 
   public function newOrderEmail($order_id, $order)
   {
-    error_log("Hello");
 
     $args = array(
       'post_type'  => 'email',
