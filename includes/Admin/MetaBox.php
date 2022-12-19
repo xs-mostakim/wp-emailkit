@@ -19,6 +19,9 @@ class MetaBox
     public function __construct()
     {
         $this->template_types = [
+            "woocommerce_low_stock"                => "WC - Low Stock",
+            "woocommerce_no_stock"                 => "WC - No Stock",
+            "woocommerce_product_on_backorder"     => "WC - Product ON Back Order",
             "wc_admin_new_order"                   => "New Order",
             "wc_cancelled_order"                   => "Cancelled order",
             "wc_failed_order"                      => "Failed Order",
