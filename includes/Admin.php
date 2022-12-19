@@ -16,8 +16,8 @@ class Admin {
 		new Admin\MetaBox();
         new Admin\Emails\EmailConfig();
         new Admin\Emails\User\NewUserRegister();
-       // new Admin\Emails\Woocommerce\NewOrder();
-        //new Admin\Emails\Woocommerce\ProcessingOrder();
+        new Admin\Emails\Woocommerce\NewOrder();
+        new Admin\Emails\Woocommerce\ProcessingOrder();
         new Admin\Emails\Woocommerce\CancelledOrder();
         new Admin\Emails\Woocommerce\FailedOrder();
         new Admin\Emails\Woocommerce\OrderOnHold();
@@ -27,7 +27,7 @@ class Admin {
         new Admin\Emails\Woocommerce\InvoiceOrder();
         new Admin\Emails\Woocommerce\ResetPassword();
         new Admin\Emails\Woocommerce\NewAccount();
-        //new Admin\Emails\Woocommerce\NoStock();
+        new Admin\Emails\Woocommerce\NoStock();
         new Admin\Emails\Woocommerce\LowStock();
         new Admin\Emails\Woocommerce\BackOrder();
 
