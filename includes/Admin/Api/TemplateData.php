@@ -37,9 +37,10 @@ class TemplateData {
 
 		$body = $request->get_body();
 		$req = json_decode($body);
+        global $post_id;
 
 		$data = array(
-            'post_title'  =>$req->post_title . '-' . date('Y-m-d H:i:s'),
+            'post_title'  =>$req->post_title,
             'post_status' => 'publish',
             'post_type'   => 'email',
             'post_author' => get_current_user_id(),
@@ -47,16 +48,17 @@ class TemplateData {
                 'email-template-html'        => $req->html,
                 'email-template-subject'     => $req->subject,
                 'object'                     => $req->object,
+                'email-template-type'        => $req->templateType,
                 'email-template-status'      => true,
             )
         );
         $post_id = wp_insert_post($data);
 
-         return [
+        return [
             "status"    => "success",
             "result"    => $post_id,
             "message"   => [
-                "post data inserted successfully.",
+                "post data saved successfully.",
             ],
         ];
 
