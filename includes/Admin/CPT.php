@@ -17,7 +17,6 @@ class CPT
         foreach($roles as $role) {
        if($role) {
           $role->add_cap( 'edit_email' ); 
-          $role->add_cap( 'edit_email' ); 
           $role->add_cap( 'edit_others_email' ); 
           $role->add_cap( 'publish_email' ); 
           $role->add_cap( 'read_email' ); 
@@ -83,7 +82,6 @@ class CPT
             'capabilities' => array(
                 'publish_posts' => 'publish_email',
                 'edit_posts' => 'edit_email',
-                'edit_others_posts' => 'edit_other_email',
                 'delete_posts' => 'delete_email',
                 'read_private_posts' => 'read_private_email',
                 'edit_post' => 'edit_email',
