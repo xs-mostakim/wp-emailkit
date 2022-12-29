@@ -21,7 +21,7 @@ class TemplateData {
 
 	public function action($request) 
     {
-        if ( !wp_verify_nonce( $request->get_header( 'X-WP-Nonce' ), 'wp_rest' ) ) {
+        /* if ( !wp_verify_nonce( $request->get_header( 'X-WP-Nonce' ), 'wp_rest' ) ) {
             return [
                 'status'    => 'fail',
                 'message'   => ['Nonce mismatch.']
@@ -33,7 +33,7 @@ class TemplateData {
                 'status'    => 'fail',
                 'message'   => ['Access denied.']
             ];
-        }
+        } */
 
 		$body = $request->get_body();
 		$req = json_decode($body);
@@ -54,13 +54,23 @@ class TemplateData {
         );
         $post_id = wp_insert_post($data);
 
-        return [
-            "status"    => "success",
-            "result"    => $post_id,
-            "message"   => [
-                "post data saved successfully.",
-            ],
-        ];
+        if(is_wp_error($post_id)) {
+            return [
+                "status"  => "fail",
+                "message" => [
+                    "post Data not saved ",
+                ],
+            ];
+        }
+        else {
+            return [
+                "status"    => "success",
+                "result"    => $post_id,
+                "message"   => [
+                    "post data saved successfully.",
+                ],
+            ];
+        }
 
 
 
