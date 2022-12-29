@@ -34,10 +34,14 @@ class Admin {
         new Admin\Emails\Woocommerce\ResetPassword();
 
         new Admin\Emails\Woocommerce\NewAccount();
+
         new Admin\Emails\Woocommerce\NoStock();
-        
         new Admin\Emails\Woocommerce\LowStock();
+        new Admin\Emails\Woocommerce\BackOrder();
+
+
         new Admin\Api\TemplateData();
+        new Admin\Api\FetchData();
 
     }
 	

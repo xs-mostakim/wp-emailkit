@@ -56,35 +56,39 @@ class MetaBox
 
 ?>
         <div style="margin-top:20px;">
-            <label for="email-template-subject" style="font-weight:bold">Email Subject</label> <br><br>
+            <label for="email_template_subject" style="font-weight:bold">Email Subject</label> <br><br>
 
-            <input type="text" name="email-template-subject" size="30"  style="width:100% !important;" value="<?php echo esc_html(get_post_meta($object->ID, "email-template-subject", true)); ?>"> 
+            <input type="text" name="email_template_subject" size="30"  style="width:100% !important;" value="<?php echo esc_html(get_post_meta($object->ID, "email_template_subject", true)); ?>"> 
             <br> <br>
 
-            <label for="email-template-type" style="font-weight:bold">Email Template Types</label> <br> <br>
+            <label for="email_template_type" style="font-weight:bold">Email Template Types</label> <br> <br>
 
-            <select name="email-template-type" style="width:100% !important;">
+            <select name="email_template_type" style="width:100% !important;">
             <option value="">Select Template Types </option>
                 <?php
 
                 foreach ($this->template_types as $key => $template_type) {
                 ?>
-                    <option value="<?php echo esc_attr($key); ?>" <?php echo esc_html($key == get_post_meta($object->ID, "email-template-type", true) ? 'selected' : ''); ?>>
+                    <option value="<?php echo esc_attr($key); ?>" <?php echo esc_html($key == get_post_meta($object->ID, "email_template_type", true) ? 'selected' : ''); ?>>
                         <?php echo esc_attr($template_type); ?> </option>
                 <?php } ?>
             </select> <br> <br>
 
-            <label for="email-template-html" style="font-weight:bold">Email Template HTML</label> <br><br>
+            <label for="email_template_content_html" style="font-weight:bold">Email Template HTML</label> <br><br>
 
-            <textarea rows="10" cols="50" name="email-template-html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email-template-html", true)); ?></textarea>
+            <textarea rows="10" cols="50" name="email_template_content_html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email_template_content_html", true)); ?></textarea>
             <br> <br>
 
+            <label for="email_template_content_object" style="font-weight:bold">Email Template Object</label> <br><br>
 
-            <label for="email-template-status" style="font-weight:bold">Status(Active/Inactive): </label>
+            <textarea rows="5" cols="20" name="email_template_content_object" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email_template_content_object", true)); ?></textarea>
+            <br> <br>
+
+            <label for="email_template_status" style="font-weight:bold">Status(Active/Inactive): </label>
             <?php
-            $status = esc_html(get_post_meta($object->ID, "email-template-status", true));
+            $status = esc_html(get_post_meta($object->ID, "email_template_status", true));
             $checked_value = $status == 1 ? "checked" : ""; ?>
-            <input name="email-template-status" type="checkbox" <?php echo esc_attr($checked_value); ?>>
+            <input name="email_template_status" type="checkbox" <?php echo esc_attr($checked_value); ?>>
         </div>
 <?php
     }
@@ -102,28 +106,33 @@ class MetaBox
         if (!isset($_POST['meta-box-nonce']) || !wp_verify_nonce($_POST['meta-box-nonce'], basename(__FILE__))) {
             return ;
         }
-        if (isset($_POST['email-template-subject'])) {
-            update_post_meta($post_id,'email-template-subject', sanitize_text_field($_POST['email-template-subject']));
+        if (isset($_POST['email_template_subject'])) {
+            update_post_meta($post_id,'email_template_subject', sanitize_text_field($_POST['email_template_subject']));
         }
 
-        $email_template_type = sanitize_text_field($_POST['email-template-type']);
-        if (isset($_POST['email-template-type']) && isset($this->template_types[$email_template_type])) {
+        $email_template_type = sanitize_text_field($_POST['email_template_type']);
+        if (isset($_POST['email_template_type']) && isset($this->template_types[$email_template_type])) {
     
-            update_post_meta($post_id, 'email-template-type', $email_template_type);
+            update_post_meta($post_id, 'email_template_type', $email_template_type);
         }
 
-        if (isset($_POST['email-template-html'])) {
-            $template_html = Utils::kses($_POST['email-template-html']);
-            update_post_meta($post_id, 'email-template-html', $template_html);
+        if (isset($_POST['email_template_content_html'])) {
+            $template_html = Utils::kses($_POST['email_template_content_html']);
+            update_post_meta($post_id, 'email_template_content_html', $template_html);
+        }
+
+        if (isset($_POST['email_template_content_object'])) {
+            $template_html = Utils::kses($_POST['email_template_content_object']);
+            update_post_meta($post_id, 'email_template_content_object', $template_html);
         }
        
 
-        if(isset($_POST["email-template-status"])){
-            $type = $_POST["email-template-type"];
+        if(isset($_POST["email_template_status"])){
+            $type = $_POST["email_template_status"];
             $this->deactivateTemplateTypes($type);
-            update_post_meta($post_id, 'email-template-status', true);
+            update_post_meta($post_id, 'email_template_status', true);
         } else {
-            update_post_meta($post_id, 'email-template-status', false);
+            update_post_meta($post_id, 'email_template_status', false);
         }
 
     }
@@ -134,12 +143,12 @@ class MetaBox
             'post_type' => 'email',
             'meta_query' => array(
                 array(
-                    'key' => 'email-template-type',
+                    'key' => 'email_template_type',
                     'value' => $type,
                     'compare' => '=',
                 ),
                 array(
-                    'key' => 'email-template-status',
+                    'key' => 'email_template_status',
                     'value' => 1,
                     'compare' => '=',
                 ),
@@ -152,7 +161,7 @@ class MetaBox
         if (isset($data)) {
             $postsIds = wp_list_pluck($data->posts, 'ID');
             foreach ($postsIds as $id) {
-                update_post_meta($id, 'email-template-status', false);
+                update_post_meta($id, 'email_template_status', false);
             }
         }
     }

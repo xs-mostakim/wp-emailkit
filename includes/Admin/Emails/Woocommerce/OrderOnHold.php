@@ -29,11 +29,11 @@ class OrderOnHold {
             'post_type'  => 'email',
             'meta_query' => array(
               array(
-                'key'     => 'email-template-type',
+                'key'     => 'email_template_type',
                 'value'   => 'wc_order_on_hold',
               ),
               array(
-                'key'     => 'email-template-status',
+                'key'     => 'email_template_status',
                 'value'   => true,
               ),
             ),
@@ -41,7 +41,7 @@ class OrderOnHold {
           $query = new WP_Query($args);
           $email = get_option('admin_email');
     	if (isset($query->posts[0])) {
-			$html  = get_post_meta($query->posts[0]->ID, 'email-template-html')[0];
+			$html  = get_post_meta($query->posts[0]->ID, 'email_template_content_html',true);
 			$tbody = substr($html, strpos($html, 'tbody'));
 			$row = substr($tbody, strpos($tbody, '<tr'), strpos($tbody, '</tbody>')- strpos($tbody, '<tr>'));
 			$rows = '';
@@ -87,7 +87,7 @@ class OrderOnHold {
     	}
 
 		$to =  get_option('admin_email');
-		$subject =str_replace(array_keys($details), array_values($details),  get_post_meta($query->posts[0]->ID, 'email-template-subject')[0]);
+		$subject =str_replace(array_keys($details), array_values($details),  get_post_meta($query->posts[0]->ID, 'email_template_subject',true));
 		$headers = [
 		'From: ' . $email . "\r\n",
 		'Reply-To: ' . $email . "\r\n",
