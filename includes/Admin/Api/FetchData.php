@@ -58,7 +58,6 @@ class FetchData {
 
 		$email_data [] = [
 			"id"              => get_the_ID(),
-            "email_html"      => get_post_meta(get_the_ID(), 'email_template_content_html', true),
             "email_object"    => get_post_meta(get_the_ID(), 'email_template_content_object', true),
             "date"            => get_the_date('Y-m-d H:i:s'),
             "user"            => get_the_author(),
