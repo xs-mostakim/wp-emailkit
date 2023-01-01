@@ -50,7 +50,6 @@ class TemplateData {
         );
         $post_id = wp_insert_post($data);
 
-        error_log(print_r($data,true));
 
         if(is_wp_error($post_id)) {
             return [
