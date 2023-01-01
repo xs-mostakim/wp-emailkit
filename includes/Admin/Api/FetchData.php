@@ -38,17 +38,17 @@ class FetchData {
             ];
         }
 
-
 		$args = array (
 
 			'post_type' => 'email',
 			'author'    => get_current_user_id(),
 			'post_status'    => 'publish',
-			'orderby'    => 'ID',
+			'orderby'    => 'date',
 			'order'    => 'DESC',
-            'posts_per_page' => -1,
+            'posts_per_page' => 1,
 
 		);
+  
 
 		$loop = new \WP_Query($args);
 
