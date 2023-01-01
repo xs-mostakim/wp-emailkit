@@ -77,7 +77,8 @@ class CPT
             'can_export'            => true,
             'has_archive'           => true,
             'exclude_from_search'   => false,
-            'publicly_queryable'    => true,
+            'publicly_queryable'    => false,
+            'rewrite'               => false,
             'capability_type'       => 'page',
             'capabilities' => array(
                 'publish_posts' => 'publish_email',
