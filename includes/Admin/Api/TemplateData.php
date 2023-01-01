@@ -37,19 +37,19 @@ class TemplateData {
 
 		$body = $request->get_body();
 		$req = json_decode($body);
-        global $post_id;
+        $post_id = $req->post_id;
 
 		$data = array( 
             'post_type'   => 'email',
-            'post_status' => 'publish',   
+            'post_status' => 'publish',  
             'post_author' => get_current_user_id(),
-            'meta_input'   => array(
+            'meta_input'  => array(
+                'id'      => $post_id,
                 'email_template_content_html'   => $req->html,
                 'email_template_content_object' => $req->object,
             )
         );
-        $post_id = wp_insert_post($data);
-
+        wp_insert_post($data);
 
         if(is_wp_error($post_id)) {
             return [

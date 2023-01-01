@@ -78,6 +78,7 @@ class MetaBox
 
             <textarea rows="10" cols="50" name="email_template_content_html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email_template_content_html", true)); ?></textarea>
             <br> <br>
+            <input type="button" name="save" id="publish" class="button button-primary button-large" value="Export html">  <br> <br>
 
             <label for="email_template_content_object" style="font-weight:bold">Email Template Object</label> <br><br>
 
