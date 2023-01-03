@@ -43,6 +43,8 @@ class Admin {
         new Admin\Api\TemplateData();
         new Admin\Api\FetchData();
 
+        new Admin\metafield\StyleLoad();
+
     }
 	
 

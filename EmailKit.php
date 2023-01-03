@@ -67,7 +67,9 @@ final class EmailKit
         define('EMAILKIT_VERSION', '1.0');
         define('EMAILKIT_FILE', __FILE__);
         define('EMAILKIT_PATH', __DIR__);
-        define('EMAILKIT_URL', plugins_url('', EMAILKIT_FILE));
+        define('EMAILKIT_URL', trailingslashit(plugin_dir_url(EMAILKIT_FILE)));
+        define('EMAILKIT_ASSETS', EMAILKIT_URL . '/assets');
+        define('EMAILKIT_DIR', trailingslashit(plugin_dir_path( __FILE__ )));
     }
 
     /**

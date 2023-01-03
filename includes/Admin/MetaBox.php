@@ -78,7 +78,8 @@ class MetaBox
 
             <textarea rows="10" cols="50" name="email_template_content_html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email_template_content_html", true)); ?></textarea>
             <br> <br>
-            <input type="button" name="save" id="publish" class="button button-primary button-large" value="Export html">  <br> <br>
+            <button class="btn contrast-switch">Edit-Email-Template</button>
+             <br> <br>
 
             <label for="email_template_content_object" style="font-weight:bold">Email Template Object</label> <br><br>
 
@@ -134,6 +135,11 @@ class MetaBox
             update_post_meta($post_id, 'email_template_status', true);
         } else {
             update_post_meta($post_id, 'email_template_status', false);
+        }
+
+        if(isset($_POST["edit_email"])) {
+            $subscription_domain = get_post_meta($post_id,'email_template_content_html',true);
+           error_log(print_r($subscription_domain,true));
         }
 
     }
