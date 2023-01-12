@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "baseUrl": ".",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/selectors/Video/VideoSettings.js",
+    "components/editor/Viewport/index.js",
+    "components/editor/Viewport/Header.js",
+    "components/selectors/Button/ButtonSettings.js",
+    "components/selectors/Button/index.js",
+    "components/selectors/Button/index.jsx",
+    "components/selectors/Button/index.jsx",
+    "components/selectors/Video/index.js",
+    "components/selectors/Container/ContainerSettings.js",
+    "components/selectors/Container/index.js",
+    "components/selectors/Text/TextSettings.js",
+    "components/selectors/Text/index.js",
+    "components/editor/Viewport/Sidebar/index.js",
+    "components/editor/Viewport/Sidebar/SidebarItem.js",
+    "components/editor/Toolbar/index.js",
+    "components/editor/Toolbar/ToolbarDropdown.js",
+    "components/editor/Toolbar/ToolbarItem.js",
+    "pages/index.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

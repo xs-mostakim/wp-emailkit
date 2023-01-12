@@ -1,0 +1,46 @@
+
+.main{
+    padding: 8px 10px;
+    border: 1px solid #808080ab;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.main:hover{
+    box-shadow: 0px 0px 5px 0px gray;
+}
+.iconStyle{
+    margin-right: 10px;
+    width: 30px;
+    height: 30px
+}
+.inputStyle{
+    width: 100%;
+    display: flex;
+    position: relative;
+    border: none;
+    margin: 6px 0;
+    border-radius: 4px;
+}
+.inputStyle p{
+    background-color: #E9ECEF;
+    padding: 3px 8px;
+    font-size: 13px;
+}
+.inputStyle input{
+    display: block;
+    width: 100%;
+    padding: 0 6px;
+    border: 1px solid rgb(226, 224, 224);
+}
+.inputStyle input:focus{
+    outline: none;
+}
+
+.deleteButton{
+    font-size: 15px; 
+    cursor: pointer;
+    margin-top: 5px;
+}
+.deleteButton:hover{
+    color: rgb(132, 92, 92);
+}

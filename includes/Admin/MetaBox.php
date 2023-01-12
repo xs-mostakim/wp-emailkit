@@ -81,6 +81,10 @@ class MetaBox
             <button class="btn contrast-switch">Edit-Email-Template</button>
              <br> <br>
 
+             <?php
+                include '../../src/out/index.html';
+             ?>
+
             <label for="email_template_content_object" style="font-weight:bold">Email Template Object</label> <br><br>
 
             <textarea rows="5" cols="20" name="email_template_content_object" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email_template_content_object", true)); ?></textarea>
