@@ -80,7 +80,6 @@ class MetaBox
             <br> <br>
             <button class="btn contrast-switch">Edit-Email-Template</button>
              <br> <br>
-             <?php include_once(EMAILKIT_PATH. '/src/out/index.html'); ?>
 
             <label for="email_template_content_object" style="font-weight:bold">Email Template Object</label> <br><br>
 
