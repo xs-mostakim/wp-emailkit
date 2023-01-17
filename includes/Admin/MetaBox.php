@@ -136,12 +136,6 @@ class MetaBox
         } else {
             update_post_meta($post_id, 'email_template_status', false);
         }
-
-        if(isset($_POST["edit_email"])) {
-            $subscription_domain = get_post_meta($post_id,'email_template_content_html',true);
-           error_log(print_r($subscription_domain,true));
-        }
-
     }
     public function deactivateTemplateTypes($type)
     {
