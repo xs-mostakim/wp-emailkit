@@ -1,4 +1,4 @@
-
+import { Resizable } from "re-resizable";
 import { useNode } from "@craftjs/core";
 import ColumnNoContent from "./ColumnNoContent";
 
@@ -32,7 +32,7 @@ export const ColumnOne = (props) => {
               padding: `${PaddingStyle?.Top}px ${PaddingStyle?.Right}px ${PaddingStyle?.Bottom}px ${PaddingStyle?.Left}px`,
             }}
           >
-            {children ? children : <ColumnNoContent />}
+            <Resizable>{children ? children : <ColumnNoContent />}</Resizable>
           </td>
         </tr>
       </tbody>

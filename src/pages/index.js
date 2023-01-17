@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { axiosInstance } from "../helpers/Axios";
+// import { axiosInstance } from "../helpers/Axios";
 import { Editor, Frame, Element } from "@craftjs/core";
 import { Viewport, RenderNode } from "../components/editor";
 import { Container, Text } from "../components/selectors";
@@ -25,8 +25,12 @@ import { Provider } from 'react-redux'
 import store from "../rtk/app/store"
 
 
+// const { React } = window.React
+// console.log(React, 'react')
+
+
 const App = () => {
-  const [showDraft, setShowDraft] = useState("");
+  const [draft, setDraft] = useState("");
   const [show, setShow] = useState(false);
 
   // Set Asynchronous function for Render Draft UI
@@ -34,28 +38,30 @@ const App = () => {
 
   //GET DRAFT DATA FROM SERVER
   useEffect(() => {
-    const fatchData = async () => {
-      // await axiosInstance.get("emailkit/wp-json/Emailkit/v1/fetch-data/")
-      await axiosInstance.get("data").then((res) => {
-        const draft = res.data;
-        setShowDraft(draft.object);
-      });
-    };
-    fatchData();
-    isTrue();
-  }, [showDraft]);
+    const loadJson = async () => {
+      const response = await fetch("http://localhost/emailkit/wp-json/Emailkit/v1/fetch-data/");
+      const { object } = await response.json();
+      setDraft(object);
 
+      // await axiosInstance.get("emailkit/wp-json/Emailkit/v1/fetch-data/").then((res) => {
+      //   const draft = res.data;
+      //   setShowDraft(draft.object);
+      // });
+      console.log(window)
+    };
+    loadJson();
+    isTrue();
+  }, [draft]);
 
 
   return (
     <Provider store={store}>
-      <div className=" h-screen">
+      <div className=" h-screen" >
         <Editor
           resolver={{
             Container, Text, Button, CustomeImage, Divider, CountDownTimer,
             SocialIcon, VideoBlock, Column, ImageComponent, CanvasContainer, TopTabPanel,
             ColumnOne, ColumnTwo, ColumnThree, ColumnFour, ColumnFive, ColumnSix,
-            // List,// TabBody,// TabPannel,
           }}
           enabled={false}
           onRender={RenderNode}
@@ -73,7 +79,7 @@ const App = () => {
           />
           <Viewport>
             {show && (
-              <Frame data={showDraft}>
+              <Frame data={draft}>
                 <Element
                   canvas
                   is={CanvasContainer}

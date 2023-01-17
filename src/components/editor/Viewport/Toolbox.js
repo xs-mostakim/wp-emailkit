@@ -155,7 +155,7 @@ export const Toolbox = () => {
                 is={CustomeImage}
                 background={{ r: 78, g: 78, b: 78, a: 1 }}
                 color={{ r: 0, g: 0, b: 0, a: 1 }}
-                height="300px"
+                height="200px"
                 width="100%"
                 backgroundSize="cover"
               ></Element>

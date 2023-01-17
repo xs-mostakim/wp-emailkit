@@ -1,5 +1,4 @@
-
-import { axiosInstance } from "../../../helpers/Axios"
+// import { axiosInstance } from "../../../helpers/Axios"
 import { useEditor } from "@craftjs/core";
 import cx from "classnames";
 import styled from "styled-components";
@@ -60,13 +59,21 @@ export const Header = ({ htmlExport }) => {
       console.log(htmlData, "export");
 
       try {
+
+        fetch('http://localhost/emailkit/wp-json/Emailkit/v1/template-data/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: { id: "", html: htmlData, object: editorState }
+        })
+
         // await axiosInstance.post("emailkit/wp-json/Emailkit/v1/template-data/", { id: "", html: htmlData, object: editorState })
-        await axiosInstance.post("data", { id: "", html: htmlData, object: editorState });
       } catch (error) {
         console.log(error.massage);
       }
     }
   };
+
+
 
   return (
     <HeaderDiv className="header text-white transition w-full">
