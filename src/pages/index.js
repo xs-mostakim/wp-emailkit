@@ -24,11 +24,6 @@ import toastCss from "react-toastify/dist/ReactToastify.css";
 import { Provider } from 'react-redux'
 import store from "../rtk/app/store"
 
-
-// const { React } = window.React
-// console.log(React, 'react')
-
-
 const App = () => {
   const [draft, setDraft] = useState("");
   const [show, setShow] = useState(false);
