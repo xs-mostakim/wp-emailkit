@@ -39,15 +39,9 @@ const App = () => {
   //GET DRAFT DATA FROM SERVER
   useEffect(() => {
     const loadJson = async () => {
-      const response = await fetch("http://localhost/emailkit/wp-json/Emailkit/v1/fetch-data/");
+      const response = await fetch("http://localhost/emailkit/wp-json/Emailkit/v1/fetch-data/", { mode: 'no-cors' });
       const { object } = await response.json();
       setDraft(object);
-
-      // await axiosInstance.get("emailkit/wp-json/Emailkit/v1/fetch-data/").then((res) => {
-      //   const draft = res.data;
-      //   setShowDraft(draft.object);
-      // });
-      console.log(window)
     };
     loadJson();
     isTrue();

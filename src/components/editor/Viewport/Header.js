@@ -58,15 +58,15 @@ export const Header = ({ htmlExport }) => {
       const htmlData = htmlFromProps.outerHTML;
       console.log(htmlData, "export");
 
+      const data = { id: "", html: htmlData, object: editorState }
+
       try {
 
         fetch('http://localhost/emailkit/wp-json/Emailkit/v1/template-data/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: { id: "", html: htmlData, object: editorState }
+          body: JSON.stringify(data)
         })
-
-        // await axiosInstance.post("emailkit/wp-json/Emailkit/v1/template-data/", { id: "", html: htmlData, object: editorState })
       } catch (error) {
         console.log(error.massage);
       }
