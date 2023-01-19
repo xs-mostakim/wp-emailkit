@@ -68,8 +68,8 @@ html.innerHTML = `<!DOCTYPE html>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="next-head-count" content="2" />
-    <link rel="stylesheet" href="./_next/static/css/fdbfdcba24f4f98c5812.css" data-n-g="" />
-    <link rel="stylesheet" href="./_next/static/css/4b1d234bd9dc78904bc1.css" data-n-p="" /><noscript data-n-css=""></noscript>
+    <link rel="stylesheet" href="../../src/dest/merged.css"/>
+    <noscript data-n-css=""></noscript>
 
 </head>
 
@@ -429,15 +429,20 @@ html.innerHTML = `<!DOCTYPE html>
 </body>
 
 </html>`;
-let script = '<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>'
-let script2 = '<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>'
 
+// React Js file Script
+let scriptOne = document.createElement('script')
+scriptOne.setAttribute("src", "https://unpkg.com/react@16/umd/react.production.min.js")
+
+// Merged Js file script
+let scriptTwo = document.createElement('script')
+scriptTwo.setAttribute("src", "../../src/dest/merged.js")
+
+// Append html and Script file as a Child of Shadow Root
 shadowRoot.appendChild(html)
-shadowRoot.appendChild(script)
-shadowRoot.appendChild(script2)
+shadowRoot.appendChild(scriptOne)
+shadowRoot.appendChild(scriptTwo)
 
-
-// < script src = "../dest/merged.js" ></script >
-
-
+// Whole Shadow Append As a Child in this div
 document.body.appendChild(div)
+
