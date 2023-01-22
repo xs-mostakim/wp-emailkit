@@ -78,8 +78,7 @@ class MetaBox
 
             <textarea rows="10" cols="50" name="email_template_content_html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email_template_content_html", true)); ?></textarea>
             <br> <br>
-            <button class="btn contrast-switch">Edit-Email-Template</button>
-             <br> <br>
+            <?php include_once(EMAILKIT_PATH. '/src/out/index.html'); ?>
 
             <label for="email_template_content_object" style="font-weight:bold">Email Template Object</label> <br><br>
 

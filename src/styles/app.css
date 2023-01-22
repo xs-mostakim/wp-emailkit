@@ -1,0 +1,179 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+@import url('https://use.typekit.net/mpa1wkh.css');
+
+html,
+body {
+  font-family: 'acumin-pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  color: rgb(75, 75, 75);
+  background: #e0e0e0;
+}
+
+/* purgecss end ignore */
+
+@tailwind utilities;
+
+.component-selected {
+  @apply relative;
+}
+
+.component-selected::after {
+  content: ' ';
+  @apply border-primary border border-solid w-full h-full absolute left-0 top-0 pointer-events-none block;
+}
+
+.transition {
+  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#carbonads * {
+  margin: initial;
+  padding: initial;
+}
+
+#carbonads {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+
+  padding: 10px 0.5rem;
+  border-top: 1px solid rgb(0 0 0 / 6%);
+}
+
+/* ====================== */
+/* ALLINITEMS COMPONENT */
+/* .radio-toolbar {
+  margin: 5px 0px;
+  display: flex;
+  border: 1px solid #444;
+  background-color: white;
+  max-width: 133px;
+  min-width: 100px;
+} */
+
+.radio-toolbar input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.radio-toolbar label {
+  margin-top: 5px;
+  display: inline-block;
+  padding: 4px 7px;
+  font-family: sans-serif, Arial;
+  font-size: 14px;
+  border: 1px solid #444;
+}
+
+.radio-toolbar label:hover {
+  background-color: #dfd;
+}
+
+.radio-toolbar input[type="radio"]:checked+label {
+  background-color: #bfb;
+  border-color: #4c4;
+}
+
+/* SPACING COMPONENT */
+
+
+.spacing_wrapper ul li {
+  display: inline-block;
+  position: relative;
+}
+
+/* .spacing_wrapper input[type="number"] {
+  padding: 3px 0px 3px 7px;
+} */
+
+.spacing_wrapper ul li input {
+  width: 40px;
+  font-size: 14px;
+}
+
+.spacing_wrapper ul li p {
+  color: black;
+  font-size: 10px;
+  text-align: center;
+}
+
+.spacing_wrapper_button {
+  padding: 6px 5px;
+  position: absolute;
+  top: -16px;
+  background-color: gray;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+}
+
+.spacing_wrapper_button_active {
+  padding: 6px 5px;
+  position: absolute;
+  top: -16px;
+  background-color: blue;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+}
+
+/* SEARCH OPTION */
+
+.search input[type="search"] {
+  padding: 3px 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+
+}
+
+input[type="number"] {
+  position: relative;
+  margin: 0 0 0.3rem;
+  border: 1px solid #BBB;
+  border-color: #BBB #ECECEC #ECECEC #BBB;
+  padding: 0rem 0.3rem;
+}
+
+/* Spin Buttons modified */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  background: #FFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAKUlEQVQYlWNgwAT/sYhhKPiPT+F/LJgEsHv37v+EMGkmkuImoh2NoQAANlcun/q4OoYAAAAASUVORK5CYII=) no-repeat center center;
+  width: 1em;
+  border-left: 1px solid #BBB;
+  opacity: .5;
+  /* shows Spin Buttons per default (Chrome >= 39) */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button:hover,
+input[type="number"]::-webkit-inner-spin-button:active {
+  opacity: .8;
+}
+
+/* Override browser form filling */
+input:-webkit-autofill {
+  background: black;
+  color: red;
+}
+
+/* Preview Button */
+.preview_section select {
+  margin-top: 3px !important;
+  margin-left: 10px !important;
+}
+
+/* ======== Matarial Radio */
+
+.MuiFormGroup-root {
+  display: block !important;
+}
