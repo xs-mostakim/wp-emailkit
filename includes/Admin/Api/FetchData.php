@@ -57,7 +57,7 @@ class FetchData {
 		while ($loop->have_posts()) : $loop->the_post();
 
 		$email_data [] = [
-			"id"              => get_post_meta(get_the_ID(), 'id', true),
+			"id"              => get_the_ID(),
             "email_object"    => get_post_meta(get_the_ID(), 'email_template_content_object', true),
             "date"            => get_the_date('Y-m-d H:i:s'),
             "user"            => get_the_author(),
