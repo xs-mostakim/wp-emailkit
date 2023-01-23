@@ -14,8 +14,9 @@ class StyleLoad {
 
     public function cpt_admin_script(){
 
-    wp_enqueue_style( 'slider', EMAILKIT_URL . 'assets/dist/admin/styles/test.css', [], EMAILKIT_VERSION );
-	wp_enqueue_script( 'emailkit-loadBtn-cpt', EMAILKIT_URL . 'assets/dist/admin/js/test.js', ['wp-plugins','wp-edit-post', 'wp-i18n', 'wp-element', 'wp-dom', 'wp-data'], EMAILKIT_VERSION, true );
+    wp_enqueue_style( 'slider', EMAILKIT_URL . 'src/dest/merged.css', [], EMAILKIT_VERSION );
+	// wp_enqueue_script( 'emailkit-loadBtn-cpt', EMAILKIT_URL . 'src/dest/merged.js', ['wp-plugins','wp-edit-post', 'wp-i18n', 'wp-element', 'wp-dom', 'wp-data'], EMAILKIT_VERSION, true );
+	wp_enqueue_script( 'emailkit-loadBtn-cpt', EMAILKIT_URL . 'src/dest/myJs.js', ['wp-plugins','wp-edit-post', 'wp-i18n', 'wp-element', 'wp-dom', 'wp-data'], EMAILKIT_VERSION, true );
 
    } 
 }
