@@ -38,6 +38,7 @@ final class EmailKit
         register_activation_hook(__FILE__, [$this, 'activate']);
 
         add_action('plugins_loaded', [$this, 'init_plugin']);
+        add_action('admin_head', [$this,'emailkit_header_script_data']);
     }
 
     /**
@@ -70,6 +71,26 @@ final class EmailKit
         define('EMAILKIT_URL', trailingslashit(plugin_dir_url(EMAILKIT_FILE)));
         define('EMAILKIT_ASSETS', EMAILKIT_URL . '/assets');
         define('EMAILKIT_DIR', trailingslashit(plugin_dir_path( __FILE__ )));
+    }
+
+    public function emailkit_header_script_data() {
+
+        $_nonce = wp_create_nonce( 'wp_rest' );
+        $config = [
+            'version' => EMAILKIT_VERSION,
+            'restNonce' => $_nonce,
+            'siteUrl' => get_site_url(),
+            'assetsUrl' => EMAILKIT_URL . 'assets/',
+            'baseApi' => get_rest_url(null, 'emailkit/v1/'),
+        ];
+
+        ?>
+	<script>
+	    window.emailKit = window.emailKit ?? {};
+	    window.emailKit.config = <?php echo json_encode($config); ?>;
+        
+	</script>
+ <?php
     }
 
     /**
