@@ -6,11 +6,17 @@ class StyleLoad {
 
 	public function __construct()
 	{
-        add_action('admin_print_scripts-post-new.php', [$this,'cpt_admin_script']);
-        add_action('admin_print_scripts-post.php', [$this,'cpt_admin_script']);
+        add_action('init', function () {
+            if (!is_user_logged_in() || !current_user_can('publish_posts')) {
+                return;
+            }
+
+            add_action('admin_print_scripts-post-new.php', [$this,'cpt_admin_script']);
+            add_action('admin_print_scripts-post.php', [$this,'cpt_admin_script']);
+
+        });
 
 	}
-
 
     public function cpt_admin_script(){
 
