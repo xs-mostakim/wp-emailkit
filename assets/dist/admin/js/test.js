@@ -2,9 +2,8 @@
 const div = document.createElement('div');
 const shadowRoot = div.attachShadow({ mode: 'open' });
 
-let html = document.createElement('html')
-html.innerHTML = `<!DOCTYPE html>
-<html>
+let html = document.createElement('div')
+html.innerHTML = `
 <head>
     <style data-styled="kwHZCx hkJNYh eBDNSu htjKlW" data-styled-version="4.4.1">
         /* sc-component-id: sc-htpNat */
@@ -427,8 +426,7 @@ html.innerHTML = `<!DOCTYPE html>
         }
     </script>
 </body>
-
-</html>`;
+`;
 
 // React Js file Script
 let scriptOne = document.createElement('script')
@@ -437,7 +435,7 @@ scriptOne.setAttribute("src", "https://unpkg.com/react@16/umd/react.production.m
 // Merged Js file script
 let scriptTwo = document.createElement('script')
 // scriptTwo.setAttribute("src", "../../src/dest/merged.js")
-scriptTwo.setAttribute("src", "/src/dest/myJs.js")
+scriptTwo.setAttribute("src", emailKit.config.assetsUrl + "dist/admin/js/myJs.js")
 
 // Append html and Script file as a Child of Shadow Root
 shadowRoot.appendChild(html)
