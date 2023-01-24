@@ -1,4 +1,3 @@
-
 import { useEditor, useNode } from "@craftjs/core";
 import { ButtonSettings } from "./ButtonSettings";
 import { Text } from "../Text";

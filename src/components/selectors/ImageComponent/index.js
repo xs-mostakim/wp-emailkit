@@ -29,7 +29,7 @@ export const ImageComponent = (props) => {
               src={image || previousImage}
               style={{
                 width,
-                height: "200px",
+                height,
                 margin: "0 auto",
                 backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
