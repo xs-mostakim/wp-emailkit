@@ -1,5 +1,8 @@
 
 module.exports = {
   assetPrefix: "./",
-  webpack5: true
+  webpack5: true,
+  output: {
+    publicPath: ''
+  }
 };

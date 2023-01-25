@@ -435,7 +435,7 @@ scriptOne.setAttribute("src", "https://unpkg.com/react@16/umd/react.production.m
 // Merged Js file script
 let scriptTwo = document.createElement('script')
 // scriptTwo.setAttribute("src", "../../src/dest/merged.js")
-scriptTwo.setAttribute("src", emailKit.config.assetsUrl + "dist/admin/js/myJs.js")
+scriptTwo.setAttribute("src", emailKit.config.assetsUrl + "dist/admin/js/merged.js")
 
 // Append html and Script file as a Child of Shadow Root
 shadowRoot.appendChild(html)

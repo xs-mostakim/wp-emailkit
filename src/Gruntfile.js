@@ -3,11 +3,11 @@ module.exports = function (grunt) {
         concat: {
             js: {
                 src: ['out/_next/**/*.js'], //specify your folder paths
-                dest: 'dest/merged.js', //destination file
+                dest: '../assets/dist/admin/js/merged.js', //destination file
             },
             css: {
                 src: ['out/_next/**/*.css'],
-                dest: 'dest/merged.css'
+                dest: '../assets/dist/admin/styles/merged.css'
             }
         },
     });
