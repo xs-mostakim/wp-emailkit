@@ -67,7 +67,7 @@ html.innerHTML = `
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="next-head-count" content="2" />
-    <link rel="stylesheet" href="../../src/dest/merged.css"/>
+    <link rel="stylesheet"  href="${emailKit.config.assetsUrl}dist/admin/styles/merged.css"/>
     <noscript data-n-css=""></noscript>
 
 </head>
@@ -445,3 +445,4 @@ shadowRoot.appendChild(scriptTwo)
 // Whole Shadow Append As a Child in this div
 document.body.appendChild(div)
 
+console.log('Hi i am loading')
