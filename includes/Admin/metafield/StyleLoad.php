@@ -27,9 +27,9 @@ class StyleLoad {
         if(is_admin()){
 
 			/* if(($current_screen->is_block_editor() || ( 
-				$current_screen->id == 'post' 
+				$current_screen->id == 'email' 
 				&& $current_screen->base == 'post' 
-				&& $current_screen->post_type == 'post'
+				&& $current_screen->post_type == 'email'
 			)) */
 
 			wp_enqueue_script( 'emailKit-admin-scripts', EMAILKIT_URL . 'assets/dist/admin/js/test.js', ['wp-plugins','wp-edit-post', 'wp-i18n', 'wp-element', 'wp-dom', 'wp-data'], EMAILKIT_VERSION, true );
