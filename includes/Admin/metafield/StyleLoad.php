@@ -11,19 +11,29 @@ class StyleLoad {
                 return;
             }
 
-            add_action('admin_print_scripts-post-new.php', [$this,'cpt_admin_script']);
-            add_action('admin_print_scripts-post.php', [$this,'cpt_admin_script']);
+			//add_action('enqueue_block_editor_assets', [$this, 'addEnqueue']);
+            add_action('admin_enqueue_scripts', [$this, 'addEnqueue']);
 
         });
 
 	}
 
-    public function cpt_admin_script(){
+	
+    public function addEnqueue()
+    {
+        
+        //$current_screen = get_current_screen();
 
-    wp_enqueue_style( 'slider', EMAILKIT_URL . 'assets/dist/admin/styles/merged.css', [], EMAILKIT_VERSION );
-    // wp_enqueue_style( 'slider', EMAILKIT_URL . 'src/dest/merged.css', [], EMAILKIT_VERSION );
-	// wp_enqueue_script( 'emailkit-loadBtn-cpt', EMAILKIT_URL . 'src/dest/merged.js', ['wp-plugins','wp-edit-post', 'wp-i18n', 'wp-element', 'wp-dom', 'wp-data'], EMAILKIT_VERSION, true );
-	wp_enqueue_script( 'emailkit-loadBtn-cpt', EMAILKIT_URL . 'assets/dist/admin/js/test.js', ['wp-plugins','wp-edit-post', 'wp-i18n', 'wp-element', 'wp-dom', 'wp-data'], EMAILKIT_VERSION, true );
+        if(is_admin()){
 
-   } 
+			/* if(($current_screen->is_block_editor() || ( 
+				$current_screen->id == 'post' 
+				&& $current_screen->base == 'post' 
+				&& $current_screen->post_type == 'post'
+			)) */
+
+			wp_enqueue_script( 'emailKit-admin-scripts', EMAILKIT_URL . 'assets/dist/admin/js/test.js', ['wp-plugins','wp-edit-post', 'wp-i18n', 'wp-element', 'wp-dom', 'wp-data'], EMAILKIT_VERSION, true );
+			wp_enqueue_style( 'emailKit-admin-style', EMAILKIT_URL . 'assets/dist/admin/styles/merged.css', [], EMAILKIT_VERSION );
+		}
+	}
 }
