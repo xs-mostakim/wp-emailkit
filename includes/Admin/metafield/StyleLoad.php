@@ -13,7 +13,6 @@ class StyleLoad {
 
 			//add_action('enqueue_block_editor_assets', [$this, 'addEnqueue']);
             add_action('admin_enqueue_scripts', [$this, 'addEnqueue']);
-
         });
 
 	}
