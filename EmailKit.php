@@ -39,6 +39,8 @@ final class EmailKit
 
         add_action('plugins_loaded', [$this, 'init_plugin']);
         add_action('admin_head', [$this,'emailkit_header_script_data']);
+        add_action( 'admin_init', [ $this, 'add_author_support' ], 10 );
+        add_filter('manage_email_posts_columns', [$this,'set_columns']);
     }
 
     /**
@@ -91,6 +93,27 @@ final class EmailKit
         
 	</script>
  <?php
+    }
+
+    public function add_author_support() {
+        add_post_type_support( 'email', 'author' );
+    }
+
+    public function set_columns($columns) {
+
+     $date_column = $columns['date'];
+     $author_column = $columns['author'];
+
+    unset( $columns['date'] );
+    unset( $columns['author'] );
+    
+    $columns['shortcode'] = esc_html__( 'Shortcode', 'emailkit' );
+    $columns['count'] = esc_html__( 'Entries', 'emailkit' );
+    $columns['author']    = esc_html( $author_column );
+    $columns['date']      = esc_html( $date_column );
+
+    return $columns;
+
     }
 
     /**
