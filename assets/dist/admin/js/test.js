@@ -383,12 +383,12 @@ jQuery(document).ready(function( $ ) {
                     "isFallback": false
                 }
             </script>
-            <script src="${emailKit.config.assetsUrl}dist/admin/js/merged.js"></script>
+            
         </body>
         `;
     // React Js file Script
     let scriptOne = document.createElement('script')
-    scriptOne.setAttribute("src", "https://unpkg.com/react@16/umd/react.production.min.js")
+    scriptOne.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js")
     
     // Merged Js file script
     let scriptTwo = document.createElement('script')
