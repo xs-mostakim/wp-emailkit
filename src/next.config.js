@@ -1,7 +1,12 @@
+const ReactRefreshWebpackPlugin = require('react-refresh-webpack-plugin');
 
 module.exports = {
   assetPrefix: "./",
-  webpack5: true,
+  webpack5: {
+    Plugin: [
+      new ReactRefreshWebpackPlugin(),
+    ] 
+  },
   output: {
     publicPath: ''
   }
