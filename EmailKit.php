@@ -65,7 +65,7 @@ final class EmailKit
      */
     public function define_constants()
     {
-        define('EMAILKIT_VERSION', '1.0');
+        define('EMAILKIT_VERSION', '1.0'.time());
         define('EMAILKIT_FILE', __FILE__);
         define('EMAILKIT_PATH', __DIR__);
         define('EMAILKIT_URL', trailingslashit(plugin_dir_url(EMAILKIT_FILE)));
@@ -82,6 +82,7 @@ final class EmailKit
             'siteUrl' => get_site_url(),
             'assetsUrl' => EMAILKIT_URL . 'assets/',
             'baseApi' => get_rest_url(null, 'emailkit/v1/'),
+            'baseUrl' => EMAILKIT_URL
         ];
 
         ?>

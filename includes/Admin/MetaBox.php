@@ -95,8 +95,13 @@ class MetaBox
         </div>
 
 
+   
+ <html>
+
+<head>
     <style data-styled="kwHZCx hkJNYh eBDNSu htjKlW" data-styled-version="4.4.1">
         /* sc-component-id: sc-htpNat */
+
         .eBDNSu {
             width: 100%;
             height: 45px;
@@ -111,6 +116,7 @@ class MetaBox
         }
 
         /* sc-component-id: sc-bxivhb */
+
         .htjKlW {
             display: -webkit-box;
             display: -webkit-flex;
@@ -135,6 +141,7 @@ class MetaBox
         }
 
         /* sc-component-id: sc-EHOje */
+
         .kwHZCx {
             -webkit-transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
             transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
@@ -143,6 +150,7 @@ class MetaBox
         }
 
         /* sc-component-id: sc-bZQynM */
+
         .hkJNYh {
             cursor: move;
         }
@@ -156,8 +164,9 @@ class MetaBox
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="next-head-count" content="2" />
+</head>
 
-
+<body>
     <div id="__next">
         <div class=" h-screen">
             <div class="Toastify"></div>
@@ -498,7 +507,7 @@ class MetaBox
                         </div>
                         <div style="display:flex;justify-content:center;gap:0 10px"
                             class="craftjs-renderer   h-full w-full transition  overflow-auto">
-                            <div style="margin-top:32px;">
+                            <div style="margin-top:32px;margin-left:">
                                 <table
                                     style="font-family:monospace;position:static;overflow:hidden;display:flex;flex-direction:column;align-items:center">
                                 </table>
@@ -516,13 +525,16 @@ class MetaBox
             },
             "page": "/",
             "query": {},
-            "buildId": "qaNN2iKzU3KB93dNE5MLI",
+            "buildId": "izqG_MIgXLuv6_7GvvDqP",
             "assetPrefix": ".",
             "nextExport": true,
             "autoExport": true,
             "isFallback": false
         }
     </script>
+</body>
+
+</html> 
 <?php
     }
 
