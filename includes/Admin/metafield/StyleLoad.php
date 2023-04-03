@@ -35,12 +35,13 @@ class StyleLoad {
 			// check if it is css or js
 			if(strpos($script, '.css') !== false)
 				{
+					error_log(print_r("email-kit-css".$index, true));
 					wp_enqueue_style( "email-kit-css".$index, EMAILKIT_URL . 'src/.next/' . $script , [], EMAILKIT_VERSION );
 				}
 			else if(strpos($script, '.js') !== false)
 			{
 				error_log(print_r("email-kit-js".$index, true));
-				wp_enqueue_script( "email-kit-js".$index, EMAILKIT_URL . 'src/.next/' . $script, ['wp-plugins','wp-edit-post', 'wp-i18n', 'wp-element', 'wp-dom', 'wp-data'], EMAILKIT_VERSION, true );
+				// wp_enqueue_script( "email-kit-js".$index, EMAILKIT_URL . 'src/.next/' . $script, ['wp-plugins','wp-edit-post', 'wp-i18n', 'wp-element', 'wp-dom', 'wp-data'], EMAILKIT_VERSION, true );
 			}
 		}
 

@@ -94,7 +94,7 @@ class MetaBox
             <input name="email_template_status" type="checkbox" <?php echo esc_attr($checked_value); ?>>
         </div>
 
-<head>
+
     <style data-styled="kwHZCx hkJNYh eBDNSu htjKlW" data-styled-version="4.4.1">
         /* sc-component-id: sc-htpNat */
         .eBDNSu {
@@ -156,8 +156,8 @@ class MetaBox
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="next-head-count" content="2" />
-</head>
-<body>
+
+
     <div id="__next">
         <div class=" h-screen">
             <div class="Toastify"></div>
@@ -523,23 +523,6 @@ class MetaBox
             "isFallback": false
         }
     </script>
-<!-- <script src="./_next/static/chunks/webpack-6d2da33030760e79b04f.js" async=""></script>
-<script src="./_next/static/chunks/framework-a62d654bd9699da79f2a.js" async=""></script>
-<script src="./_next/static/chunks/main-092d9fc583c0a3e10227.js" async=""></script>
-<script src="./_next/static/chunks/pages/_app-01b0d5219df0857c8001.js" async=""></script>
-<script src="./_next/static/chunks/17007de1-89d7f5b82c6dac846103.js" async=""></script>
-<script src="./_next/static/chunks/d0c16330-3cf77ae76381fd1c799c.js" async=""></script>
-<script src="./_next/static/chunks/252f366e-d930eec5e42193f14f2a.js" async=""></script>
-<script src="./_next/static/chunks/6728d85a-32757da8f82d9176c29a.js" async=""></script>
-<script src="./_next/static/chunks/1bfc9850-b499e6faae04416b497a.js" async=""></script>
-<script src="./_next/static/chunks/0c428ae2-05b4dcf7db1775f28b13.js" async=""></script>
-<script src="./_next/static/chunks/d7eeaac4-ff98abf6ad20d238dfb8.js" async=""></script>
-<script src="./_next/static/chunks/29107295-62449f6ab50432c0efef.js" async=""></script>
-<script src="./_next/static/chunks/204-4a84d856d1fbe83e218a.js" async=""></script>
-<script src="./_next/static/chunks/pages/index-d7ac71d8b13db42eb2bb.js" async=""></script>
-<script src="./_next/static/UldLST9_yRkwmn-VuBX3n/_buildManifest.js" async=""></script>
-<script src="./_next/static/UldLST9_yRkwmn-VuBX3n/_ssgManifest.js" async=""></script>  -->
-</body>
 <?php
     }
 
