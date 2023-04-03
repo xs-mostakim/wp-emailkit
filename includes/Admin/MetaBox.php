@@ -93,84 +93,7 @@ class MetaBox
             $checked_value = $status == 1 ? "checked" : ""; ?>
             <input name="email_template_status" type="checkbox" <?php echo esc_attr($checked_value); ?>>
         </div>
-<?php
-    }
 
-    /**
-     * Save metaBox values
-     */
-    public function save($post_id)
-    {
-        if (!is_user_logged_in() || !current_user_can('administrator')) {
-            return $post_id;
-        }
-
-        // We have Verified The nonce
-        if (!isset($_POST['meta-box-nonce']) || !wp_verify_nonce($_POST['meta-box-nonce'], basename(__FILE__))) {
-            return ;
-        }
-        if (isset($_POST['email_template_subject'])) {
-            update_post_meta($post_id,'email_template_subject', sanitize_text_field($_POST['email_template_subject']));
-        }
-
-        $email_template_type = sanitize_text_field($_POST['email_template_type']);
-        if (isset($_POST['email_template_type']) && isset($this->template_types[$email_template_type])) {
-    
-            update_post_meta($post_id, 'email_template_type', $email_template_type);
-        }
-
-        if (isset($_POST['email_template_content_html'])) {
-            $template_html = Utils::kses($_POST['email_template_content_html']);
-            update_post_meta($post_id, 'email_template_content_html', $template_html);
-        }
-
-        if (isset($_POST['email_template_content_object'])) {
-            $template_html = Utils::kses($_POST['email_template_content_object']);
-            update_post_meta($post_id, 'email_template_content_object', $template_html);
-        }
-       
-
-        if(isset($_POST["email_template_status"])){
-            $type = $_POST["email_template_status"];
-            $this->deactivateTemplateTypes($type);
-            update_post_meta($post_id, 'email_template_status', true);
-        } else {
-            update_post_meta($post_id, 'email_template_status', false);
-        }
-    }
-    public function deactivateTemplateTypes($type)
-    {
-
-        $query = array(
-            'post_type' => 'email',
-            'meta_query' => array(
-                array(
-                    'key' => 'email_template_type',
-                    'value' => $type,
-                    'compare' => '=',
-                ),
-                array(
-                    'key' => 'email_template_status',
-                    'value' => 1,
-                    'compare' => '=',
-                ),
-                'relation' => 'AND',
-                'fields' => 'ids'
-            )
-        );
-
-        $data = new \WP_Query($query);
-        if (isset($data)) {
-            $postsIds = wp_list_pluck($data->posts, 'ID');
-            foreach ($postsIds as $id) {
-                update_post_meta($id, 'email_template_status', false);
-            }
-        }
-    }
-}
-?>
-
-<div>
 <head>
     <style data-styled="kwHZCx hkJNYh eBDNSu htjKlW" data-styled-version="4.4.1">
         /* sc-component-id: sc-htpNat */
@@ -233,25 +156,6 @@ class MetaBox
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="next-head-count" content="2" />
-    <!-- <link rel="preload" href="./_next/static/css/4e70f8e2488ebcbc06d2.css" as="style" />
-    <link rel="stylesheet" href="./_next/static/css/4e70f8e2488ebcbc06d2.css" data-n-g="" />
-    <link rel="preload" href="./_next/static/css/4b1d234bd9dc78904bc1.css" as="style" />
-    <link rel="stylesheet" href="./_next/static/css/4b1d234bd9dc78904bc1.css" data-n-p="" /><noscript
-        data-n-css=""></noscript>
-    <link rel="preload" href="./_next/static/chunks/webpack-6d2da33030760e79b04f.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/framework-a62d654bd9699da79f2a.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/main-092d9fc583c0a3e10227.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/pages/_app-01b0d5219df0857c8001.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/17007de1-89d7f5b82c6dac846103.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/d0c16330-3cf77ae76381fd1c799c.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/252f366e-d930eec5e42193f14f2a.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/6728d85a-32757da8f82d9176c29a.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/1bfc9850-b499e6faae04416b497a.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/0c428ae2-05b4dcf7db1775f28b13.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/d7eeaac4-ff98abf6ad20d238dfb8.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/29107295-62449f6ab50432c0efef.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/204-4a84d856d1fbe83e218a.js" as="script" />
-    <link rel="preload" href="./_next/static/chunks/pages/index-d7ac71d8b13db42eb2bb.js" as="script" /> -->
 </head>
 <body>
     <div id="__next">
@@ -605,25 +509,112 @@ class MetaBox
             </div>
         </div>
     </div>
-    <!-- <script id="__NEXT_DATA__"
-        type="application/json">{"props":{"pageProps":{}},"page":"/","query":{},"buildId":"UldLST9_yRkwmn-VuBX3n","assetPrefix":".","nextExport":true,"autoExport":true,"isFallback":false}</script>
-    <script nomodule="" src="./_next/static/chunks/polyfills-7b08e4c67f4f1b892f4b.js"></script>
-    <script src="./_next/static/chunks/webpack-6d2da33030760e79b04f.js" async=""></script>
-    <script src="./_next/static/chunks/framework-a62d654bd9699da79f2a.js" async=""></script>
-    <script src="./_next/static/chunks/main-092d9fc583c0a3e10227.js" async=""></script>
-    <script src="./_next/static/chunks/pages/_app-01b0d5219df0857c8001.js" async=""></script>
-    <script src="./_next/static/chunks/17007de1-89d7f5b82c6dac846103.js" async=""></script>
-    <script src="./_next/static/chunks/d0c16330-3cf77ae76381fd1c799c.js" async=""></script>
-    <script src="./_next/static/chunks/252f366e-d930eec5e42193f14f2a.js" async=""></script>
-    <script src="./_next/static/chunks/6728d85a-32757da8f82d9176c29a.js" async=""></script>
-    <script src="./_next/static/chunks/1bfc9850-b499e6faae04416b497a.js" async=""></script>
-    <script src="./_next/static/chunks/0c428ae2-05b4dcf7db1775f28b13.js" async=""></script>
-    <script src="./_next/static/chunks/d7eeaac4-ff98abf6ad20d238dfb8.js" async=""></script>
-    <script src="./_next/static/chunks/29107295-62449f6ab50432c0efef.js" async=""></script>
-    <script src="./_next/static/chunks/204-4a84d856d1fbe83e218a.js" async=""></script>
-    <script src="./_next/static/chunks/pages/index-d7ac71d8b13db42eb2bb.js" async=""></script>
-    <script src="./_next/static/UldLST9_yRkwmn-VuBX3n/_buildManifest.js" async=""></script>
-    <script src="./_next/static/UldLST9_yRkwmn-VuBX3n/_ssgManifest.js" async=""></script> -->
+    <script id="__NEXT_DATA__" type="application/json">
+        {
+            "props": {
+                "pageProps": {}
+            },
+            "page": "/",
+            "query": {},
+            "buildId": "qaNN2iKzU3KB93dNE5MLI",
+            "assetPrefix": ".",
+            "nextExport": true,
+            "autoExport": true,
+            "isFallback": false
+        }
+    </script>
+<!-- <script src="./_next/static/chunks/webpack-6d2da33030760e79b04f.js" async=""></script>
+<script src="./_next/static/chunks/framework-a62d654bd9699da79f2a.js" async=""></script>
+<script src="./_next/static/chunks/main-092d9fc583c0a3e10227.js" async=""></script>
+<script src="./_next/static/chunks/pages/_app-01b0d5219df0857c8001.js" async=""></script>
+<script src="./_next/static/chunks/17007de1-89d7f5b82c6dac846103.js" async=""></script>
+<script src="./_next/static/chunks/d0c16330-3cf77ae76381fd1c799c.js" async=""></script>
+<script src="./_next/static/chunks/252f366e-d930eec5e42193f14f2a.js" async=""></script>
+<script src="./_next/static/chunks/6728d85a-32757da8f82d9176c29a.js" async=""></script>
+<script src="./_next/static/chunks/1bfc9850-b499e6faae04416b497a.js" async=""></script>
+<script src="./_next/static/chunks/0c428ae2-05b4dcf7db1775f28b13.js" async=""></script>
+<script src="./_next/static/chunks/d7eeaac4-ff98abf6ad20d238dfb8.js" async=""></script>
+<script src="./_next/static/chunks/29107295-62449f6ab50432c0efef.js" async=""></script>
+<script src="./_next/static/chunks/204-4a84d856d1fbe83e218a.js" async=""></script>
+<script src="./_next/static/chunks/pages/index-d7ac71d8b13db42eb2bb.js" async=""></script>
+<script src="./_next/static/UldLST9_yRkwmn-VuBX3n/_buildManifest.js" async=""></script>
+<script src="./_next/static/UldLST9_yRkwmn-VuBX3n/_ssgManifest.js" async=""></script>  -->
 </body>
-</div>
+<?php
+    }
+
+    /**
+     * Save metaBox values
+     */
+    public function save($post_id)
+    {
+        if (!is_user_logged_in() || !current_user_can('administrator')) {
+            return $post_id;
+        }
+
+        // We have Verified The nonce
+        if (!isset($_POST['meta-box-nonce']) || !wp_verify_nonce($_POST['meta-box-nonce'], basename(__FILE__))) {
+            return ;
+        }
+        if (isset($_POST['email_template_subject'])) {
+            update_post_meta($post_id,'email_template_subject', sanitize_text_field($_POST['email_template_subject']));
+        }
+
+        $email_template_type = sanitize_text_field($_POST['email_template_type']);
+        if (isset($_POST['email_template_type']) && isset($this->template_types[$email_template_type])) {
+    
+            update_post_meta($post_id, 'email_template_type', $email_template_type);
+        }
+
+        if (isset($_POST['email_template_content_html'])) {
+            $template_html = Utils::kses($_POST['email_template_content_html']);
+            update_post_meta($post_id, 'email_template_content_html', $template_html);
+        }
+
+        if (isset($_POST['email_template_content_object'])) {
+            $template_html = Utils::kses($_POST['email_template_content_object']);
+            update_post_meta($post_id, 'email_template_content_object', $template_html);
+        }
+       
+
+        if(isset($_POST["email_template_status"])){
+            $type = $_POST["email_template_status"];
+            $this->deactivateTemplateTypes($type);
+            update_post_meta($post_id, 'email_template_status', true);
+        } else {
+            update_post_meta($post_id, 'email_template_status', false);
+        }
+    }
+    public function deactivateTemplateTypes($type)
+    {
+
+        $query = array(
+            'post_type' => 'email',
+            'meta_query' => array(
+                array(
+                    'key' => 'email_template_type',
+                    'value' => $type,
+                    'compare' => '=',
+                ),
+                array(
+                    'key' => 'email_template_status',
+                    'value' => 1,
+                    'compare' => '=',
+                ),
+                'relation' => 'AND',
+                'fields' => 'ids'
+            )
+        );
+
+        $data = new \WP_Query($query);
+        if (isset($data)) {
+            $postsIds = wp_list_pluck($data->posts, 'ID');
+            foreach ($postsIds as $id) {
+                update_post_meta($id, 'email_template_status', false);
+            }
+        }
+    }
+}
+
+
 
