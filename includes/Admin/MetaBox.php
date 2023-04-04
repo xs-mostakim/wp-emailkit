@@ -536,7 +536,7 @@ class MetaBox
 
 </html>  -->
 
-<iframe src="<?php echo EMAILKIT_URL . 'src/out/index.html' ?>" width="600" frameborder="0"></iframe>
+<iframe src="<?php echo EMAILKIT_URL . 'src/out/index.html' ?>" width="100%" height="800" frameborder="0"></iframe>
 <?php
     }
 
