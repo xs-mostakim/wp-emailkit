@@ -25,22 +25,22 @@ import store from "../rtk/app/store"
 
 const App = () => {
   const [draft, setDraft] = useState("");
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   // Set Asynchronous function for Render Draft UI
-  const isTrue = () => { setTimeout(() => { setShow(true) }, 500) };
+  // const isTrue = () => { setTimeout(() => { setShow(true) }, 500) };
 
   //GET DRAFT DATA FROM SERVER
-  useEffect(() => {
-    const loadJson = async () => {
-      // const response = await fetch("http://localhost/emailkit/wp-json/Emailkit/v1/fetch-data/");
-      const response = await fetch("");
-      const { object } = await response.json();
-      setDraft(object);
-    };
-    loadJson();
-    isTrue();
-  }, [draft]);
+  // useEffect(() => {
+  //   const loadJson = async () => {
+  //     // const response = await fetch("http://localhost/emailkit/wp-json/Emailkit/v1/fetch-data/");
+  //     const response = await fetch("");
+  //     const { object } = await response.json();
+  //     setDraft(object);
+  //   };
+  //   loadJson();
+  //   isTrue();
+  // }, [draft]);
 
 
   return (
@@ -68,7 +68,7 @@ const App = () => {
           />
           <Viewport>
             {show && (
-              <Frame data={draft}>
+              <Frame >
                 <Element
                   canvas
                   is={CanvasContainer}

@@ -12,7 +12,7 @@ export const CustomeImage = (props, e) => {
   }));
 
   props = { ...defaultProps, ...props };
-  const { flexDirection, background, alignItems, justifyContent, color, Padding, Margin, shadow, children, width, minHeight, backgroundSize } = props;
+  const { flexDirection, background, alignItems, justifyContent, color, Padding, Margin, shadow, children, width, height, minHeight, backgroundSize } = props;
 
   return (
     <table
