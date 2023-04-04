@@ -20,7 +20,6 @@ import { ImageComponent } from "components/selectors/ImageComponent";
 import { TopTabPanel } from "../components/selectors/TabPannel/TopTabPanel";
 import { CanvasContainer } from "components/selectors/CanvasContainer";
 import { ToastContainer } from "react-toastify";
-import toastCss from "react-toastify/dist/ReactToastify.css";
 import { Provider } from 'react-redux'
 import store from "../rtk/app/store"
 

@@ -96,7 +96,7 @@ class MetaBox
 
 
    
- <html>
+ <!-- <html>
 
 <head>
     <style data-styled="kwHZCx hkJNYh eBDNSu htjKlW" data-styled-version="4.4.1">
@@ -534,7 +534,9 @@ class MetaBox
     </script>
 </body>
 
-</html> 
+</html>  -->
+
+<iframe src="<?php echo EMAILKIT_URL . 'src/out/index.html' ?>" width="600" frameborder="0"></iframe>
 <?php
     }
 
