@@ -12,12 +12,13 @@ export const CanvasContainer = (props) => {
   const { background, color, shadow, radius, children, margin, justifyContent, flexDirection, alignItems, minHeight } = props;
 
   return (
-    <table
+    <div
       ref={connect}
       style={{
         justifyContent,
         flexDirection,
         alignItems,
+        minHeight,
         background: `rgba(${Object.values(background)})`,
         color: `rgba(${Object.values(color)})`,
         margin: `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px`,
@@ -32,7 +33,7 @@ export const CanvasContainer = (props) => {
       <div style={{ padding: `20px 20px 20px 20px`, alignItems, justifyContent }}>
         {children}
       </div>
-    </table>
+    </div>
   );
 };
 

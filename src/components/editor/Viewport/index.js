@@ -36,12 +36,12 @@ export const Viewport = ({ children }) => {
             ref={(ref) => connectors.select(connectors.hover(ref, null), null)}
           >
             <div style={{ marginTop: "32px", marginLeft: enabled ? "220px" : "" }}>
-              <table
-                style={{ fontFamily: "monospace", position: "static", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}
+              <div
+                style={{ fontFamily: "monospace" }}
                 ref={htmlref}
               >
                 {children}
-              </table>
+              </div>
             </div>
           </div>
         </div>
