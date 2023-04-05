@@ -43,6 +43,8 @@ export const Header = ({ htmlExport }) => {
   //save to data db
   const handleExportHtml = async () => {
     actions.setOptions((options) => (options.enabled = !enabled));
+
+    const htmlFromProps = htmlExport.current
     const editorState = query.serialize();
 
     if (!enabled) return
@@ -53,6 +55,7 @@ export const Header = ({ htmlExport }) => {
           item.setAttribute("contenteditable", "false");
         }
       }
+
 
       const htmlData = htmlFromProps.outerHTML;
       console.log(htmlData, "export");
