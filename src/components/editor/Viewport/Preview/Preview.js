@@ -1,4 +1,4 @@
-import React from 'react';
+import DOMPurify from 'dompurify'
 import { Tooltip } from "@material-ui/core";
 import { Box, Modal, Divider } from '@mui/material'
 import { AiOutlineDesktop, AiOutlineTablet, AiOutlineMobile } from "react-icons/ai";
@@ -22,8 +22,7 @@ export const Preview = ({ htmlData }) => {
 
   const handleExitButton = () => { dispatch(ExitPreviewButton()) }
   const handleResponsiveOption = (item) => { dispatch(responsive(item.size)) }
-  const htmlFromProps = htmlData.current;
-  const outerData = htmlFromProps.outerHTML;
+
 
   return (
     <div>
@@ -50,7 +49,7 @@ export const Preview = ({ htmlData }) => {
           <div style={headerBottom}></div>
           <div style={{ width: `${previewDrop}`, margin: '0 auto', boxShadow: "0px 0px 1px 0px black", paddingBottom: '10px', minHeight: '450px', }}>
             <div style={{ maxWidth: '600px', margin: '0 auto', padding: '0px 10px' }}>
-              <div dangerouslySetInnerHTML={{ __html: outerData }} />
+              <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(htmlData?.current?.outerHTML) }} />
             </div>
           </div>
         </Box>

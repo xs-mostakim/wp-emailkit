@@ -35,18 +35,17 @@ const Btn = styled.a`
 
 export const Header = ({ htmlExport }) => {
   const { query } = useEditor();
-  const { enabled, actions } = useEditor((state, query) => ({
+  const { enabled, actions } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
 
 
-  // SAVE DATA JSON SERVER
+  //save to data db
   const handleExportHtml = async () => {
     actions.setOptions((options) => (options.enabled = !enabled));
+    const editorState = query.serialize();
 
-    if (enabled) {
-      const htmlFromProps = htmlExport.current;
-      const editorState = query.serialize();
+    if (!enabled) return
 
       const itemsList = htmlFromProps.querySelectorAll(".contentEditable");
       if (itemsList.length > 0) {
@@ -70,7 +69,6 @@ export const Header = ({ htmlExport }) => {
       // } catch (error) {
       //   console.log(error.massage);
       // }
-    }
   };
 
 
