@@ -38,7 +38,7 @@ export const Viewport = ({ children }) => {
       <div
         className={cx(["flex h-full overflow-hidden flex-row w-full fixed"])}
       >
-        <TopTabPanel />
+            <TopTabPanel />
         <div className="page-container flex flex-1 h-full flex-col">
           <Header htmlExport={htmlref} />
 
@@ -46,7 +46,7 @@ export const Viewport = ({ children }) => {
             style={{
               display: "flex",
               justifyContent: enabled ? "flex-start" : "center",
-              gap: "0 10px",
+              gap: "0 10px"
             }}
             className={cx([
               "craftjs-renderer   h-full w-full transition  overflow-auto",
@@ -58,10 +58,10 @@ export const Viewport = ({ children }) => {
           >
             <div style={{ marginTop: "32px", marginLeft: enabled ? "220px" : "" }}>
               <table
-                style={{ fontFamily: "monospace", position: "static", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}
+                style={{ fontFamily: "monospace", width:'100%', minHeight:'300px', maxWidth:'600px' }}
                 ref={htmlref}
               >
-                {children}
+               <tbody> {children}</tbody>
               </table>
             </div>
           </div>

@@ -20,7 +20,7 @@ export const CustomeImage = (props, e) => {
       style={{
         borderCollapse: "collapse",
         width,
-        height,
+        minHeight,
         maxHeight: "auto",
         backgroundSize: "100% 100%",
         backgroundRepeat: "no-repeat",

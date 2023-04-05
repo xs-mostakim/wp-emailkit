@@ -60,16 +60,16 @@ export const Header = ({ htmlExport }) => {
 
       const data = { id: "", html: htmlData, object: editorState }
 
-      try {
+      // try {
 
-        fetch('http://localhost/emailkit/wp-json/Emailkit/v1/template-data/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        })
-      } catch (error) {
-        console.log(error.massage);
-      }
+      //   fetch('http://localhost/emailkit/wp-json/Emailkit/v1/template-data/', {
+      //     method: 'POST',
+      //     headers: { 'Content-Type': 'application/json' },
+      //     body: JSON.stringify(data)
+      //   })
+      // } catch (error) {
+      //   console.log(error.massage);
+      // }
     }
   };
 
