@@ -21,11 +21,20 @@ export const TabBody = () => {
   const { enabled, connectors: { create } } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
+
+  // const { actions: { setProp } } = useNode();
+
+    // FOR COLUMN HANDLE
+    // const handleColumn = (item) => {
+    //   setProp((props) => (props.columnContainer = item.column));
+    //   setProp((props) => (props.columnID = item.id));
+    // };
+
   return (
     <>
       {ColumnItems.map((item) => (
         <div
-          onClick={() => handleColumn(item)}
+          // onClick={() => handleColumn(item)}
           key={item.id}
           ref={(ref) =>
             create(
