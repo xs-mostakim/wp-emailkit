@@ -12,7 +12,6 @@ import { Sidebar } from "../Sidebar";
 import { BsEye } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { previewButton } from "../../../../rtk/features/Preview/PreviewSlice";
-
 import { Toolbox } from "../Toolbox";
 import TemplateList from "./TemplateList";
 import TabBody from "./TabBody";
@@ -74,9 +73,11 @@ const EditorSidebar = () => {
               {tabElement.map(item => <Tab key={item.value} label={<p className="tab-item-name">{item.name}</p>} value={item.value} />)}
             </TabList>
           </Box>
-          {
-            tabItemList.map(item => <TabPanel key={item.id} className='editor-sidebar-body' value={item.value}>{item.component}</TabPanel>)
-          }
+          <div className='editor-sidebar-body'>
+            {
+              tabItemList.map(item => <TabPanel key={item.id} value={item.value}>{item.component}</TabPanel>)
+            }
+          </div>
         </TabContext>
       }
 

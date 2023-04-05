@@ -178,6 +178,17 @@ input:-webkit-autofill {
   display: block !important;
 }
 
+.email-builder-editor-container ::-webkit-scrollbar {
+  width: 5px;             
+}
+
+.email-builder-editor-container ::-webkit-scrollbar-thumb {
+  background-color: rgb(208, 207, 207);    
+  border-radius: 20px;    
+  border: none; 
+}
+
+
 /* editor sidebar styles */
 .editor-sidebar-container{
   width: 310px;
@@ -205,9 +216,9 @@ input:-webkit-autofill {
   font-size: 10px;
 }
 .editor-sidebar-container .editor-sidebar-body{
-  background: "#fff";
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  padding-bottom: 150px;
 }
 .editor-sidebar-container .editor-sidebar-footer{
   width: 100%;
@@ -215,6 +226,7 @@ input:-webkit-autofill {
   padding: 10px;
   position: absolute;
   bottom: 0;
+  z-index: 2;
 }
 .editor-sidebar-container .editor-sidebar-footer .redo-undo{
   color: #fff;
