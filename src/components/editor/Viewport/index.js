@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useEditor } from "@craftjs/core";
 import cx from "classnames";
 import { Header } from "./Header";
-import { TopTabPanel } from "../../selectors/TabPannel/TopTabPanel";
+// import { TopTabPanel } from "../../selectors/TabPannel/TopTabPanel";
+import EditorSidebar from "./EditorSidebar";
 
 export const Viewport = ({ children }) => {
   const htmlref = useRef(null);
@@ -17,7 +18,8 @@ export const Viewport = ({ children }) => {
       <div
         className={cx(["flex h-full overflow-hidden flex-row w-full fixed"])}
       >
-        <TopTabPanel />
+        <EditorSidebar />
+        {/* <TopTabPanel /> */}
         <div className="page-container flex flex-1 h-full flex-col">
           <Header htmlExport={htmlref} />
 

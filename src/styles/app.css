@@ -177,3 +177,52 @@ input:-webkit-autofill {
 .MuiFormGroup-root {
   display: block !important;
 }
+
+/* editor sidebar styles */
+.editor-sidebar-container{
+  width: 310px;
+  background-color: #fff;
+  position: relative;
+  
+}
+.editor-sidebar-container .editor-sidebar-header{
+  display: flex;
+  justify-content: space-between;
+  background-color: #4896ED;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  padding:10px 15px ;
+}
+
+.editor-sidebar-container .editor-sidebar-header .widgets{
+  font-size: 14px;
+}
+.editor-sidebar-container .editor-sidebar-header .toggle{
+  cursor: pointer;
+}
+.editor-sidebar-container .tab-item-name{
+  font-size: 10px;
+}
+.editor-sidebar-container .editor-sidebar-body{
+  background: "#fff";
+  height: 100%;
+  overflow-y: scroll;
+}
+.editor-sidebar-container .editor-sidebar-footer{
+  width: 100%;
+  background-color:#495157 ;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+}
+.editor-sidebar-container .editor-sidebar-footer .redo-undo{
+  color: #fff;
+  font-size: 20px;
+  margin: 0 4px;
+}
+.editor-sidebar-container .editor-sidebar-footer .preview-btn{
+    color: #fff;
+    font-size: 20px;
+    margin: 2px 0 0 7px;
+}
