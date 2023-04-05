@@ -35,42 +35,42 @@ const Btn = styled.a`
 
 export const Header = ({ htmlExport }) => {
   const { query } = useEditor();
-  const { enabled, actions } = useEditor((state, query) => ({
+  const { enabled, actions } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
 
 
-  // SAVE DATA JSON SERVER
+  //save to data db
   const handleExportHtml = async () => {
     actions.setOptions((options) => (options.enabled = !enabled));
+    const editorState = query.serialize();
 
-    if (enabled) {
-      const htmlFromProps = htmlExport.current;
-      const editorState = query.serialize();
+    if (!enabled) return
 
-      const itemsList = htmlFromProps.querySelectorAll(".contentEditable");
-      if (itemsList.length > 0) {
-        for (const item of itemsList) {
-          item.setAttribute("contenteditable", "false");
-        }
-      }
-
-      const htmlData = htmlFromProps.outerHTML;
-      console.log(htmlData, "export");
-
-      const data = { id: "", html: htmlData, object: editorState }
-
-      try {
-
-        fetch('http://localhost/emailkit/wp-json/Emailkit/v1/template-data/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        })
-      } catch (error) {
-        console.log(error.massage);
+    let htmlData = htmlExport.current;
+    const itemsList = htmlData.querySelectorAll(".contentEditable");
+    if (itemsList.length) {
+      for (const item of itemsList) {
+        item.setAttribute("contenteditable", "false");
       }
     }
+
+    const htmlDataStr = htmlData.outerHTML;
+    console.log(htmlDataStr);
+
+    const data = { id: "", html: htmlDataStr, object: editorState }
+
+    try {
+
+      fetch('http://localhost:3000/emailkit/wp-json/Emailkit/v1/template-data/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+    } catch (error) {
+      console.log(error.massage);
+    }
+
   };
 
 

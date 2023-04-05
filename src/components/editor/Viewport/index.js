@@ -7,31 +7,10 @@ import { TopTabPanel } from "../../selectors/TabPannel/TopTabPanel";
 export const Viewport = ({ children }) => {
   const htmlref = useRef(null);
 
-  const { enabled, connectors, actions: { setOptions } } = useEditor((state) => ({
+  const { enabled, connectors } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
 
-  useEffect(() => {
-    if (!window) {
-      return;
-    }
-
-    window.requestAnimationFrame(() => {
-      // Notify doc site
-      window.parent.postMessage(
-        {
-          LANDING_PAGE_LOADED: true,
-        },
-        "*"
-      );
-
-      setTimeout(() => {
-        setOptions((options) => {
-          options.enabled = true;
-        });
-      }, 200);
-    });
-  }, [setOptions]);
 
   return (
     <div className="viewport">
@@ -57,12 +36,12 @@ export const Viewport = ({ children }) => {
             ref={(ref) => connectors.select(connectors.hover(ref, null), null)}
           >
             <div style={{ marginTop: "32px", marginLeft: enabled ? "220px" : "" }}>
-              <table
-                style={{ fontFamily: "monospace", position: "static", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}
+              <div
+                style={{ fontFamily: "monospace" }}
                 ref={htmlref}
               >
                 {children}
-              </table>
+              </div>
             </div>
           </div>
         </div>
