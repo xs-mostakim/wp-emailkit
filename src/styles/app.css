@@ -127,7 +127,6 @@ body {
   padding: 3px 10px;
   border: 1px solid gray;
   border-radius: 5px;
-  text-align: center;
   width: 100%;
 
 }
@@ -177,3 +176,16 @@ input:-webkit-autofill {
 .MuiFormGroup-root {
   display: block !important;
 }
+
+/* ==== Scrollbar==== */
+
+::-webkit-scrollbar {
+  width: 5px;             
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(208, 207, 207);    
+  border-radius: 20px;    
+  border: none; 
+}
+

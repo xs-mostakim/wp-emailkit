@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { axiosInstance } from "../helpers/Axios";
 import { Editor, Frame, Element } from "@craftjs/core";
 import { Viewport, RenderNode } from "../components/editor";
 import { Container, Text } from "../components/selectors";
@@ -28,19 +27,18 @@ const App = () => {
   const [show, setShow] = useState(true);
 
   // Set Asynchronous function for Render Draft UI
-  // const isTrue = () => { setTimeout(() => { setShow(true) }, 500) };
+  const isTrue = () => { setTimeout(() => { setShow(true) }, 500) };
 
   //GET DRAFT DATA FROM SERVER
-  // useEffect(() => {
-  //   const loadJson = async () => {
-  //     // const response = await fetch("http://localhost/emailkit/wp-json/Emailkit/v1/fetch-data/");
-  //     const response = await fetch("");
-  //     const { object } = await response.json();
-  //     setDraft(object);
-  //   };
-  //   loadJson();
-  //   isTrue();
-  // }, [draft]);
+  useEffect(() => {
+    const loadJson = async () => {
+      const response = await fetch("wp-json/Emailkit/v1/fetch-data/");
+      const { object } = await response.json();
+      setDraft(object);
+    };
+    loadJson();
+    isTrue();
+  }, [draft]);
 
 
   return (
@@ -50,7 +48,7 @@ const App = () => {
           resolver={{
             Container, Text, Button, CustomeImage, Divider, CountDownTimer,
             SocialIcon, VideoBlock, Column, ImageComponent, CanvasContainer, TopTabPanel,
-            ColumnOne, ColumnTwo, ColumnThree, ColumnFour, ColumnFive, ColumnSix,
+            ColumnOne, ColumnTwo, ColumnThree, ColumnFour, ColumnFive, ColumnSix
           }}
           enabled={false}
           onRender={RenderNode}

@@ -15,13 +15,13 @@ const ImageContainerSettings = ({ handleUploader }) => {
       </ToolbarSection>
       <ToolbarSection
         title="Dimensions"
-        props={["width", "height"]}
+        props={["width", "minHeight"]}
       // summary={({ width, height }) => {
       //   return `${width || 0} x ${height || 0}`;
       // }}
       >
         <ToolbarItem propKey="width" type="text" label="Width" />
-        <ToolbarItem propKey="height" type="text" label="Height" />
+        <ToolbarItem propKey="minHeight" type="text" label="Height" />
       </ToolbarSection>
       {/* <ToolbarSection title="Colors" props={["background", "color"]}>
         <ToolbarItem full={true} propKey="background" type="bg" label="Background" />

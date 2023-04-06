@@ -37,7 +37,7 @@ export const FileUpload = ({ onChange, title, name }) => {
         />
         <label
           htmlFor="actual-btn"
-          style={{ background: "#4896ED", padding: "5px 10px", color: 'white', fontSize: '12px' }}
+          style={{ background: "#4896ED", padding: "5px 10px", color: 'white', fontSize: '12px', cursor:'pointer' }}
         >
           Upload Image
         </label>

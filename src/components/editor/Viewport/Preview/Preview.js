@@ -47,7 +47,7 @@ export const Preview = ({ htmlData }) => {
           <Divider style={{ margin: '10px 0px' }} />
 
           <div style={headerBottom}></div>
-          <div style={{ width: `${previewDrop}`, margin: '0 auto', boxShadow: "0px 0px 1px 0px black", paddingBottom: '10px', minHeight: '450px', }}>
+          <div style={{ width: `${previewDrop}`, margin: '0 auto', boxShadow: "0px 0px 3px 0px black", paddingBottom: '10px', minHeight: '450px', marginTop:'10px', }}>
             <div style={{ maxWidth: '600px', margin: '0 auto', padding: '0px 10px' }}>
               <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(htmlData?.current?.outerHTML) }} />
             </div>

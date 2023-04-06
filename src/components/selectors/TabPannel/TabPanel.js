@@ -152,7 +152,7 @@ export default function VerticalTabs() {
             <Toolbox />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            {intialColumn.map((item) => (
+            {/* {intialColumn.map((item) => (
               <div
                 onClick={() => handleColumn(item)}
                 key={item.id}
@@ -180,13 +180,13 @@ export default function VerticalTabs() {
                   className="blockColumn"
                 />
               </div>
-            ))}
+            ))} */}
           </TabPanel>
           <Tooltip title="Hide" placement="right">
-            <button
+            {/* <button
               onClick={handleSidebar}
               className={`${styles.customBtn}`}
-            ></button>
+            ></button> */}
           </Tooltip>
         </div>
       </div>
