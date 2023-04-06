@@ -1,65 +1,50 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { AiOutlineLink } from "react-icons/ai";
+import { Tooltip } from "@material-ui/core";
 import { useNode } from "@craftjs/core";
-import { BsLink45Deg } from "react-icons/bs";
 
-const spacingOption = [
-  { id: "Top", name: 'Top' },
-  { id: "Right", name: 'Right' },
-  { id: "Bottom", name: 'Bottom' },
-  { id: "Left", name: 'Left' },
-]
-
-export const SpacingItem = ({ title }) => {
-  const [show, setShow] = useState(false)
-  const [spacing, setSpacing] = useState({ Top: "0", Right: "0", Bottom: "0", Left: "0" });
+export const SpacingItem = ({ title = '' }) => {
   const { actions: { setProp } } = useNode();
+  const [toggle, setToggle] = useState(true);
+  const [spacing, setSpacing] = useState({ Top: 0, Right: 0, Bottom: 0, Left: 0, });
 
-  // Activate give space all
-  const handleButton = () => { setShow(!show) }
-
-  // For Handle Spacing
-  const handleChange = (e) => {
-    const { value, name } = e.target
-    setSpacing({ ...spacing, [name]: value });
-
-    if (show) {
-      setSpacing({ Top: value, Right: value, Bottom: value, Left: value })
-    }
-  };
-  // For show Spacing UI
   useEffect(() => {
     setProp((props) => (props[title] = spacing));
   }, [spacing]);
 
+
+  const inputSpacingHandler = (event) => {
+    const { name, value } = event.target;
+    if (toggle) {
+      setSpacing({ Top: value, Right: value, Bottom: value, Left: value, });
+    } else {
+      setSpacing({ ...spacing, [name]: value, })
+    }
+  };
+
   return (
-    <>
-      <div className="spacing_wrapper">
-        <ul>
+    <div className='space-controller-container'>
+      {/* <label className='space-controller-label' htmlFor={`label-${title}`}>{title}</label> */}
+      <div className='space-controller-wrapper'>
 
+        {Object.keys(spacing).map((item, index) => {
+          return (
+            <div key={index} className='space-controller-item'>
+              <input value={spacing[item]} name={item} type="number" onChange={inputSpacingHandler} />
+              <span>{item}</span>
+            </div>
+          )
+        })}
 
-          {show ?
-            <li>
-              <input min={0} type="number" onChange={(e) => handleChange(e)} />
-              <p>{title}</p>
-            </li>
-            :
-            spacingOption.map((item, index) => (
-              <li key={index}>
-                <input min={0} type="number" name={item.name} id={item.id} onChange={(e) => handleChange(e)} />
-                <p>{item.name}</p>
-              </li>
-            ))
-          }
-
-
-          <li onClick={handleButton} className={show ? "spacing_wrapper_button_active" : "spacing_wrapper_button"}>
-            <BsLink45Deg />
-          </li>
-
-        </ul>
+        <Tooltip title="Link values together" placement="top-start">
+          <div
+            onClick={() => setToggle((prevState) => !prevState)}
+            className={`space-toggle-controller ${toggle ? 'acive-toggle' : ''}`}
+          >
+            <AiOutlineLink />
+          </div>
+        </Tooltip>
       </div>
-    </>
+    </div>
   );
 };
-
-
