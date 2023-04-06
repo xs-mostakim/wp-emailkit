@@ -178,11 +178,11 @@ input:-webkit-autofill {
   display: block !important;
 }
 
-.email-builder-editor-container ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 5px;             
 }
 
-.email-builder-editor-container ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: rgb(208, 207, 207);    
   border-radius: 20px;    
   border: none; 

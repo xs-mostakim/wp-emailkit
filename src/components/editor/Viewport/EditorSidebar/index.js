@@ -26,25 +26,24 @@ const tabElement = [
 const tabItemList = [
   { id: "xyz", value: '1', component: <Toolbox /> },
   { id: "ubc", value: '2', component: <TemplateList /> },
-  { id: "abc", value: '3', component: <TabBody /> },
+  { id: "abc", value: '3', component: <h2>Editing Tools</h2> },
 ]
 
 
 const EditorSidebar = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [value, setValue] = useState("1");
   const [showStyleBar, setShowStyleBar] = useState(false);
 
-  const { enabled, connectors, actions } = useEditor((state) => ({
-    enabled: state.options.enabled,
-  }));
-
-  useEditor((state) => {
+  const { enabled, connectors, actions } = useEditor((state) => {
     /**
      * When user select any element after dragged, then it's style menu open.
      * And if user remove any dragged element, then widget menu open 
     */
     if (state.events.selected.size) setShowStyleBar(true)
+    return {
+      enabled: state.options.enabled,
+    }
   });
 
 
@@ -66,9 +65,7 @@ const EditorSidebar = () => {
       {showStyleBar ?
         <Sidebar /> :
         <TabContext value={value}>
-
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-
             <TabList onChange={(_, newValue) => setValue(newValue)}>
               {tabElement.map(item => <Tab key={item.value} label={<p className="tab-item-name">{item.name}</p>} value={item.value} />)}
             </TabList>
