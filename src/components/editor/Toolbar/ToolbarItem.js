@@ -2,7 +2,7 @@
 import { useNode } from "@craftjs/core";
 import { Grid, Slider, RadioGroup } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { ButtonAction } from "components/selectors/Button/ButtonAction";
+import { ButtonAction } from "../../selectors/Button/ButtonAction";
 import ListStyle from "./ListStyle";
 
 import { ToolbarDropdown } from "./ToolbarDropdown";

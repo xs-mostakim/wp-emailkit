@@ -14,7 +14,7 @@
 
 # production
 /build
-/src/out
+out/
 
 # misc
 .DS_Store
