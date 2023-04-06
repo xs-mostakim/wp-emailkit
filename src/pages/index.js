@@ -29,9 +29,17 @@ const App = () => {
   const isTrue = () => { setTimeout(() => { setShow(true) }, 500) };
 
   //GET DRAFT DATA FROM SERVER
+
   useEffect(() => {
     const loadJson = async () => {
-      const response = await fetch("wp-json/Emailkit/v1/fetch-data/");
+      const config = global.window?.parent?.emailKit?.config || {}
+      const response = await fetch(config.baseApi + "fetch-data/", {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-WP-Nonce': config.restNonce
+        }
+      });
       const { object } = await response.json();
       setDraft(object);
     };

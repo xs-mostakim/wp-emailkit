@@ -49,29 +49,34 @@ export const Header = ({ htmlExport }) => {
 
     if (!enabled) return
 
-      const itemsList = htmlFromProps.querySelectorAll(".contentEditable");
-      if (itemsList.length > 0) {
-        for (const item of itemsList) {
-          item.setAttribute("contenteditable", "false");
-        }
+    const itemsList = htmlFromProps.querySelectorAll(".contentEditable");
+    if (itemsList.length > 0) {
+      for (const item of itemsList) {
+        item.setAttribute("contenteditable", "false");
       }
+    }
 
 
-      const htmlData = htmlFromProps.outerHTML;
-      console.log(htmlData, "export");
+    const htmlData = htmlFromProps.outerHTML;
+    console.log(htmlData, "export");
 
-      const data = { id: "", html: htmlData, object: editorState }
 
-      try {
+    const data = { id: "", html: htmlData, object: editorState }
 
-        fetch('wp-json/Emailkit/v1/template-data/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        })
-      } catch (error) {
-        console.log(error.massage);
-      }
+    try {
+      const config = global.window?.parent?.emailKit?.config || {}
+
+      fetch(config.baseApi + 'template-data/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-WP-Nonce': config.restNonce
+        },
+        body: JSON.stringify(data)
+      })
+    } catch (error) {
+      console.log(error.massage);
+    }
   };
 
 
