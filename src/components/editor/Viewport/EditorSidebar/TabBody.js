@@ -1,13 +1,12 @@
 import { useEditor } from "@craftjs/core";
-// ====== IMPORT FOR COLUMN ========
-import { ColumnOne } from "../column/ColumnOne";
-import { ColumnTwo } from "../column/ColumnTwo";
-import { ColumnThree } from "../column/ColumnThree";
-import { ColumnFour } from "../column/ColumnFour";
-import { ColumnFive } from "../column/ColumnFive";
-import { ColumnSix } from "../column/ColumnSix";
 
-// =========== COLUMN =============
+import { ColumnOne } from "./Columns/ColumnOne";
+import { ColumnTwo } from "./Columns/ColumnTwo";
+import { ColumnThree } from "./Columns/ColumnThree";
+import { ColumnFour } from "./Columns/ColumnFour";
+import { ColumnFive } from "./Columns/ColumnFive";
+import { ColumnSix } from "./Columns/ColumnSix";
+
 const ColumnItems = [
   { id: 1, column: ColumnOne, img: "https://i.ibb.co/yPqDP3P/Column-One.jpg" },
   { id: 2, column: ColumnTwo, img: "https://i.ibb.co/jvBtxvh/Column-Two.jpg" },
@@ -17,24 +16,21 @@ const ColumnItems = [
   { id: 6, column: ColumnSix, img: "https://i.ibb.co/K6w6tyr/Column-Six.jpg" },
 ];
 
-export const TabBody = () => {
+const TabBody = () => {
   const { enabled, connectors: { create } } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
 
-  // const { actions: { setProp } } = useNode();
+  const handleColumn = (item) => {
 
-    // FOR COLUMN HANDLE
-    // const handleColumn = (item) => {
-    //   setProp((props) => (props.columnContainer = item.column));
-    //   setProp((props) => (props.columnID = item.id));
-    // };
+  }
+
 
   return (
     <>
       {ColumnItems.map((item) => (
         <div
-          // onClick={() => handleColumn(item)}
+          onClick={() => handleColumn(item)}
           key={item.id}
           ref={(ref) =>
             create(
@@ -60,3 +56,5 @@ export const TabBody = () => {
     </>
   );
 };
+
+export default TabBody;

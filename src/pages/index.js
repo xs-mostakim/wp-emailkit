@@ -16,7 +16,6 @@ import { ColumnFour } from "components/selectors/column/ColumnFour";
 import { ColumnFive } from "components/selectors/column/ColumnFive";
 import { ColumnSix } from "components/selectors/column/ColumnSix";
 import { ImageComponent } from "components/selectors/ImageComponent";
-import { TopTabPanel } from "../components/selectors/TabPannel/TopTabPanel";
 import { CanvasContainer } from "components/selectors/CanvasContainer";
 import { ToastContainer } from "react-toastify";
 import { Provider } from 'react-redux'
@@ -43,12 +42,12 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div className=" h-screen" >
+      <div className="email-builder-editor-container h-screen" >
         <Editor
           resolver={{
             Container, Text, Button, CustomeImage, Divider, CountDownTimer,
-            SocialIcon, VideoBlock, Column, ImageComponent, CanvasContainer, TopTabPanel,
-            ColumnOne, ColumnTwo, ColumnThree, ColumnFour, ColumnFive, ColumnSix
+            SocialIcon, VideoBlock, Column, ImageComponent, CanvasContainer,
+            ColumnOne, ColumnTwo, ColumnThree, ColumnFour, ColumnFive, ColumnSix,
           }}
           enabled={false}
           onRender={RenderNode}
