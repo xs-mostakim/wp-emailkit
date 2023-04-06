@@ -81,7 +81,7 @@ final class EmailKit
             'restNonce' => $_nonce,
             'siteUrl' => get_site_url(),
             'assetsUrl' => EMAILKIT_URL . 'assets/',
-            'baseApi' => get_rest_url(null, 'emailkit/v1/'),
+            'baseApi' => get_rest_url(null, 'Emailkit/v1/'),
             'baseUrl' => EMAILKIT_URL
         ];
 

@@ -32,8 +32,7 @@ const App = () => {
   //GET DRAFT DATA FROM SERVER
   useEffect(() => {
     const loadJson = async () => {
-      // const response = await fetch("http://localhost/emailkit/wp-json/Emailkit/v1/fetch-data/");
-      const response = await fetch("");
+      const response = await fetch("wp-json/Emailkit/v1/fetch-data/");
       const { object } = await response.json();
       setDraft(object);
     };
