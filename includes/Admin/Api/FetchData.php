@@ -14,7 +14,7 @@ class FetchData {
 	public function __construct()
 	{
 		add_action('rest_api_init', function() {
-            register_rest_route('Emailkit/v1', 'fetch-data', array(
+            register_rest_route('emailkit/v1', 'fetch-data', array(
                 'methods'  => \WP_REST_Server::ALLMETHODS,
                 'callback' => [$this, 'action'],
                 'permission_callback' => '__return_true',

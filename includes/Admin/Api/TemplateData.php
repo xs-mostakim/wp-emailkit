@@ -11,7 +11,7 @@ class TemplateData {
 	public function __construct()
 	{
 		add_action('rest_api_init', function() {
-            register_rest_route('Emailkit/v1', 'template-data', array(
+            register_rest_route('emailkit/v1', 'template-data', array(
                 'methods'  => \WP_REST_Server::ALLMETHODS,
                 'callback' => [$this, 'action'],
                 'permission_callback' => '__return_true',
@@ -58,6 +58,11 @@ class TemplateData {
             ];
         }
         else {
+            // add headers to allow cross-origin requests
+            header('Access-Control-Allow-Origin: http://localhost:3000');
+            header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+    
             return [
                 "status"    => "success",
                 "result"    => $post_id,

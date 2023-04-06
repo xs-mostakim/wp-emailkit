@@ -20,7 +20,7 @@ export const CustomeImage = (props, e) => {
       style={{
         borderCollapse: "collapse",
         width,
-        height,
+        minHeight,
         maxHeight: "auto",
         backgroundSize: "100% 100%",
         backgroundRepeat: "no-repeat",
@@ -39,6 +39,7 @@ export const CustomeImage = (props, e) => {
             : `0px 3px 100px ${shadow}px rgba(0, 0, 0, 0.13)`,
       }}
     >
+      <tbody>
       <tr style={{ width: "100%" }}>
         <td
           style={{
@@ -51,6 +52,7 @@ export const CustomeImage = (props, e) => {
           {children}
         </td>
       </tr>
+      </tbody>
     </table>
   );
 };

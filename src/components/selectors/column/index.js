@@ -29,8 +29,10 @@ export const Column = (props) => {
           style={{
             width: "100%",
             margin: `${Margin?.Top}px ${Margin?.Right}px ${Margin?.Bottom}px ${Margin?.Left}px`,
+
           }}
         >
+          <tbody>
           <tr>
             <td
               style={{
@@ -50,6 +52,7 @@ export const Column = (props) => {
               <Resizable>{children ? children : <ColumnNoContent />}</Resizable>
             </td>
           </tr>
+          </tbody>
         </table>
       )}
     </>

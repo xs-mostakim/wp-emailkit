@@ -25,7 +25,7 @@ export const Viewport = ({ children }) => {
             style={{
               display: "flex",
               justifyContent: enabled ? "flex-start" : "center",
-              gap: "0 10px",
+              gap: "0 10px"
             }}
             className={cx([
               "craftjs-renderer   h-full w-full transition  overflow-auto",
@@ -36,12 +36,12 @@ export const Viewport = ({ children }) => {
             ref={(ref) => connectors.select(connectors.hover(ref, null), null)}
           >
             <div style={{ marginTop: "32px", marginLeft: enabled ? "220px" : "" }}>
-              <div
-                style={{ fontFamily: "monospace" }}
+              <table
+                style={{ fontFamily: "monospace", width: '100%', minHeight: '300px', maxWidth: '600px' }}
                 ref={htmlref}
               >
-                {children}
-              </div>
+                <tbody> {children}</tbody>
+              </table>
             </div>
           </div>
         </div>
