@@ -1,7 +1,8 @@
 
 import { Resizable } from "re-resizable";
 import { Element, useNode } from "@craftjs/core";
-import { ColumnOne } from "./ColumnOne";
+// import { ColumnOne } from "./ColumnOne";
+import { Column } from ".";
 
 export const ColumnThree = (props) => {
   const {
@@ -46,7 +47,7 @@ export const ColumnThree = (props) => {
             }}
           >
             <Resizable>
-              <Element canvas is={ColumnOne} id="1">
+              <Element canvas is={Column} id="1">
                 {children}
               </Element>
             </Resizable>
@@ -59,7 +60,7 @@ export const ColumnThree = (props) => {
             }}
           >
             <Resizable>
-              <Element canvas is={ColumnOne} id="2">
+              <Element canvas is={Column} id="2">
                 {children}
               </Element>
             </Resizable>
@@ -72,7 +73,7 @@ export const ColumnThree = (props) => {
             }}
           >
             <Resizable>
-              <Element canvas is={ColumnOne} id="3">
+              <Element canvas is={Column} id="3">
                 {children}
               </Element>
             </Resizable>

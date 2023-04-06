@@ -2,6 +2,7 @@
 import { Element, useNode } from "@craftjs/core";
 import { Resizable } from "re-resizable";
 import { ColumnOne } from "./ColumnOne";
+import { Column } from ".";
 
 export const ColumnTwo = (props) => {
   const {
@@ -13,6 +14,8 @@ export const ColumnTwo = (props) => {
     Margin,
   } = props;
   const { BorderType, color, radius } = BorderStyle;
+
+  console.log(Background,'Background')
 
   const {
     connectors: { connect, drag },
@@ -46,7 +49,7 @@ export const ColumnTwo = (props) => {
             }}
           >
             <Resizable>
-              <Element canvas is={ColumnOne} id="1">
+              <Element canvas is={Column} id="1">
                 {children}
               </Element>
             </Resizable>
@@ -59,7 +62,7 @@ export const ColumnTwo = (props) => {
             }}
           >
             <Resizable>
-              <Element canvas is={ColumnOne} id="2">
+              <Element canvas is={Column} id="2">
                 {children}
               </Element>
             </Resizable>
@@ -69,3 +72,6 @@ export const ColumnTwo = (props) => {
     </table>
   );
 };
+
+
+

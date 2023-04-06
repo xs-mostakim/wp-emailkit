@@ -19,7 +19,8 @@ export const ColumnOne = (props) => {
         border: `${radius || 0}px ${BorderType || ""} rgba(${Object.values(
           color || ""
         )})`,
-        background: `${Background ? `rgba(${Object.values(Background)})` : ""}`,
+        // background: `${Background ? `rgba(${Object.values(Background)})` : ""}`,
+        background: `blue`,
         margin: `${Margin?.Top}px ${Margin?.Right}px ${Margin?.Bottom}px ${Margin?.Left}px`,
       }}
     >
@@ -39,3 +40,4 @@ export const ColumnOne = (props) => {
     </table>
   );
 };
+

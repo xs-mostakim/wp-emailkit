@@ -39,7 +39,7 @@ export const Column = (props) => {
                 width: "100%",
                 textAlign: "center",
                 padding: `${Padding?.Top}px ${Padding?.Right}px ${Padding?.Bottom}px ${Padding?.Left}px`,
-                background: `${Background ? `rgba(${Object.values(Background)})` : ""}`,
+                background: `${Background ? `rgba(${Object.values(Background)})` : "transparent"}`,
                 backgroundImage: `url(${picture || ""})`,
                 backgroundSize: "cover",
                 backgroundPosition: "top",
@@ -61,7 +61,7 @@ export const Column = (props) => {
 
 // DEFUALT PROPS FOR THIS COMPONENTS
 const defaultProps = {
-  background: { r: 255, g: 255, b: 255, a: 1 },
+  background: { r: '', g: '', b: '', a: '' },
   flexDirection: "column",
   alignItems: "flex-start",
   justifyContent: "flex-start",
@@ -81,3 +81,5 @@ Column.craft = {
     toolbar: ColumnSettings,
   },
 };
+
+
