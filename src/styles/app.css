@@ -240,6 +240,12 @@ input:-webkit-autofill {
 
 /* editor sidebar template columns styles */
 .template-list-container{}
+.template-list-container .no-data-show{
+  text-align: center;
+  font-size: 18px;
+  font-weight: 5000;
+  color: #646464;
+}
 .template-list-container .template-card-body{
   color: #000000d9;
   font-size: 14px;

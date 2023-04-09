@@ -5,6 +5,9 @@ import styled from "styled-components";
 import Checkmark from "../../../public/icons/check.svg";
 import Customize from "../../../public/icons/customize.svg";
 import { Preview } from "./Preview/Preview"
+import { refetchData } from "../../../rtk/features/templates/templateSlice";
+import { useDispatch } from "react-redux";
+
 
 const HeaderDiv = styled.div`
   width: 100%;
@@ -34,10 +37,13 @@ const Btn = styled.a`
 
 
 export const Header = ({ htmlExport }) => {
+  const dispatch = useDispatch();
   const { query } = useEditor();
   const { enabled, actions } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
+
+
 
 
   //save to data db
@@ -63,22 +69,22 @@ export const Header = ({ htmlExport }) => {
 
     const data = { id: "", html: htmlData, object: editorState }
 
-    try {
-      // const config = global.window?.parent?.emailKit?.config || {}
-      const localhost = 'http://localhost:3000/';
-      const restNonce = 'f5003035cd';
+    // const config = global.window?.parent?.emailKit?.config || {}
+    const localhost = 'http://localhost:3000/';
+    const restNonce = 'f5003035cd';
 
-      fetch(localhost + 'template-data/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-WP-Nonce': restNonce
-        },
-        body: JSON.stringify(data)
-      })
-    } catch (error) {
-      console.log(error.massage);
-    }
+    fetch(localhost + 'template-data/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-WP-Nonce': restNonce
+      },
+      body: JSON.stringify(data)
+    }).then((res) => {
+      dispatch(refetchData())
+
+    }).catch((error) => console.log(error.massage))
+
   };
 
 

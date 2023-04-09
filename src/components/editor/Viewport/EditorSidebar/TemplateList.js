@@ -1,11 +1,16 @@
 import { MdOutlineDateRange } from "react-icons/md";
+import { useSelector, useDispatch } from "react-redux";
+import { currentTempate } from "../../../../rtk/features/templates/templateSlice";
 
 const TemplateList = () => {
+  const dispatch = useDispatch();
+  const { templateList } = useSelector((state) => state.templates);
 
 
   return (
     <div className="template-list-container">
-      {[1, 2, 3].map((template, index) => <div key={index} className="template-card-body">
+      {templateList.length === 0 && <h5 className="no-data-show">No template yet.</h5>}
+      {templateList.map((template, index) => <div onClick={() => dispatch(currentTempate(index))} key={template.id} className="template-card-body">
         <div className="template-card-create-content">
           <MdOutlineDateRange size={18} />
           <span className="template-card-calender">Created at <span>27-03-2023</span></span>
