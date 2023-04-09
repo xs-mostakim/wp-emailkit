@@ -58,19 +58,21 @@ export const Header = ({ htmlExport }) => {
 
 
     const htmlData = htmlFromProps.outerHTML;
-    console.log(htmlData, "export");
+    // console.log(htmlData, "export");
 
 
     const data = { id: "", html: htmlData, object: editorState }
 
     try {
-      const config = global.window?.parent?.emailKit?.config || {}
+      // const config = global.window?.parent?.emailKit?.config || {}
+      const localhost = 'http://localhost:3000/';
+      const restNonce = 'f5003035cd';
 
-      fetch(config.baseApi + 'template-data/', {
+      fetch(localhost + 'template-data/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-WP-Nonce': config.restNonce
+          'X-WP-Nonce': restNonce
         },
         body: JSON.stringify(data)
       })

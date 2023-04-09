@@ -22,31 +22,34 @@ import { Provider } from 'react-redux'
 import store from "../rtk/app/store"
 
 const App = () => {
-  const [draft, setDraft] = useState("");
-  const [show, setShow] = useState(true);
-
-  // Set Asynchronous function for Render Draft UI
-  const isTrue = () => { setTimeout(() => { setShow(true) }, 500) };
-
-  //GET DRAFT DATA FROM SERVER
+  const [draft, setDraft] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const loadJson = async () => {
-      const config = global.window?.parent?.emailKit?.config || {}
-      const response = await fetch(config.baseApi + "fetch-data/", {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-WP-Nonce': config.restNonce
-        }
-      });
-      const { object } = await response.json();
-      setDraft(object);
-    };
-    loadJson();
-    isTrue();
-  }, [draft]);
+    // const config = global.window?.parent?.emailKit?.config || {}
+    const localhost = 'http://localhost:3000/';
+    const restNonce = 'f5003035cd';
 
+    setLoading(true)
+    fetch(localhost + 'template-data', {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-WP-Nonce': restNonce
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setDraft(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        setLoading(false)
+        console.log(err);
+      })
+
+  }, []);
+
+  console.log(draft)
 
   return (
     <Provider store={store}>
@@ -72,8 +75,8 @@ const App = () => {
             theme="light"
           />
           <Viewport>
-            {show && (
-              <Frame >
+            {!loading && (
+              <Frame data={draft[1]?.object}>
                 <Element
                   canvas
                   is={CanvasContainer}
