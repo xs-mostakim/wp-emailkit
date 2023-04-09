@@ -61,7 +61,7 @@ export const Column = (props) => {
 
 // DEFUALT PROPS FOR THIS COMPONENTS
 const defaultProps = {
-  background: { r: '', g: '', b: '', a: '' },
+  background: { r: 0, g: 0, b: 0, a: 0 },
   flexDirection: "column",
   alignItems: "flex-start",
   justifyContent: "flex-start",
