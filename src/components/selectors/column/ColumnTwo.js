@@ -15,8 +15,6 @@ export const ColumnTwo = (props) => {
   } = props;
   const { BorderType, color, radius } = BorderStyle;
 
-  console.log(Background,'Background')
-
   const {
     connectors: { connect, drag },
   } = useNode((node) => ({
