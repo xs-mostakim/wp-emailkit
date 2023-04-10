@@ -13,15 +13,15 @@ export const templateSlice = createSlice({
     name: 'templates',
     initialState,
     reducers: {
-        currentTempate: (state, action) => {
+        currentTemplateHandler: (state, action) => {
             state.currentTemplate = action.payload;
         },
-        refetchData: (state, action) => {
+        refetchDataHandler: (state, action) => {
             state.isRefetch = !state.isRefetch;
         }
     },
 });
 
-export const { currentTempate, refetchData } = templateSlice.actions;
+export const { currentTemplateHandler, refetchDataHandler } = templateSlice.actions;
 
 export default templateSlice.reducer
