@@ -39,3 +39,4 @@ export const ColumnOne = (props) => {
     </table>
   );
 };
+
