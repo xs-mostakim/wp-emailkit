@@ -1,10 +1,13 @@
 import { MdOutlineDateRange } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { currentTempate } from "../../../../rtk/features/templates/templateSlice";
+import { templatesData } from "../../../../rtk/api/templatesApi/templatesData";
 
 const TemplateList = () => {
   const dispatch = useDispatch();
-  const { templateList, currentTemplate } = useSelector((state) => state.templates);
+  const { currentTemplate } = useSelector((state) => state.templates);
+
+  const templateList = templatesData()
 
 
   return (

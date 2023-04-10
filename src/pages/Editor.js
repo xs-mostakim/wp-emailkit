@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Editor, Frame, Element } from "@craftjs/core";
 import { Viewport, RenderNode } from "../components/editor";
 import { Container, Text } from "../components/selectors";
@@ -18,19 +18,40 @@ import { ColumnSix } from "../components/selectors/column/ColumnSix";
 import { ImageComponent } from "../components/selectors/ImageComponent";
 import { CanvasContainer } from "../components/selectors/CanvasContainer";
 import { ToastContainer } from "react-toastify";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTemplates } from "../rtk/api/templatesApi/fetchTemplates";
+import { useSelector } from "react-redux";
+import { templatesData } from "../rtk/api/templatesApi/templatesData";
 
 
 
 const EditorContainer = () => {
-    const dispatch = useDispatch();
-    const { loading, templateList, currentTemplate, isRefetch } = useSelector((state) => state.templates);
+    const { currentTemplate } = useSelector((state) => state.templates);
+    const [draft, setDraft] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    useEffect(() => dispatch(fetchTemplates()), [isRefetch]);
+    // useEffect(() => {
+    //     const config = global.window?.parent?.emailKit?.config || {}
+    //     setLoading(true)
+    //     fetch(config.baseApi + "fetch-data/", {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'X-WP-Nonce': config.restNonce
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then((data) => {
+    //             setDraft(data)
+    //             setLoading(false)
 
-    console.log(templateList[currentTemplate]?.object, currentTemplate)
-    // console.log(templateList.length, isRefetch);
+    //         }).catch((error) => {
+    //             setLoading(false)
+    //         })
+    // }, []);
+
+
+    const templateList = templatesData();
+    console.log(templateList[currentTemplate].object)
+
 
     return (
         <div className="email-builder-editor-container h-screen" >
@@ -56,7 +77,7 @@ const EditorContainer = () => {
                 />
                 <Viewport>
                     {!loading && (
-                        <Frame data={templateList[currentTemplate]?.object}>
+                        <Frame data={templateList[currentTemplate].object}>
                             <Element
                                 canvas
                                 is={CanvasContainer}

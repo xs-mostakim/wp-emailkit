@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTemplates } from "../../api/templatesApi/fetchTemplates";
 
 const initialState = {
     loading: false,
@@ -9,7 +8,6 @@ const initialState = {
     isRefetch: false,
 }
 
-// const config = global.window?.parent?.emailKit?.config || {}
 
 export const templateSlice = createSlice({
     name: 'templates',
@@ -22,24 +20,6 @@ export const templateSlice = createSlice({
             state.isRefetch = !state.isRefetch;
         }
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchTemplates.pending, (state, action) => {
-                state.loading = true;
-                state.error = null
-
-            })
-            .addCase(fetchTemplates.fulfilled, (state, action) => {
-                state.loading = false;
-                state.templateList = action.payload;
-                state.error = null
-            })
-            .addCase(fetchTemplates.rejected, (state, action) => {
-                state.loading = false;
-                state.templateList = [];
-                state.error = action.error.message
-            })
-    }
 });
 
 export const { currentTempate, refetchData } = templateSlice.actions;
