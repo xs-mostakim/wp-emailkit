@@ -6,6 +6,7 @@ import Checkmark from "../../../public/icons/check.svg";
 import Customize from "../../../public/icons/customize.svg";
 import { Preview } from "./Preview/Preview"
 
+
 const HeaderDiv = styled.div`
   width: 100%;
   height: 45px;
