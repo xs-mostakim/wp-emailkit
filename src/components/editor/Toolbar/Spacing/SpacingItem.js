@@ -8,11 +8,6 @@ export const SpacingItem = ({ title = '' }) => {
   const [toggle, setToggle] = useState(true);
   const [spacing, setSpacing] = useState({ Top: 0, Right: 0, Bottom: 0, Left: 0, });
 
-  useEffect(() => {
-    setProp((props) => (props[title] = spacing));
-  }, [spacing]);
-
-
   const inputSpacingHandler = (event) => {
     const { name, value } = event.target;
     if (toggle) {
@@ -20,6 +15,9 @@ export const SpacingItem = ({ title = '' }) => {
     } else {
       setSpacing({ ...spacing, [name]: value, })
     }
+
+    // For update Ui
+    setProp((props) => (props[title] = spacing));
   };
 
   return (

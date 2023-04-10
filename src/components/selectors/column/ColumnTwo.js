@@ -1,8 +1,7 @@
 
 import { Element, useNode } from "@craftjs/core";
 import { Resizable } from "re-resizable";
-import { ColumnOne } from "./ColumnOne";
-import { Column } from ".";
+import { Column } from "./index";
 
 export const ColumnTwo = (props) => {
   const {
@@ -15,9 +14,7 @@ export const ColumnTwo = (props) => {
   } = props;
   const { BorderType, color, radius } = BorderStyle;
 
-  const {
-    connectors: { connect, drag },
-  } = useNode((node) => ({
+  const {connectors: { connect, drag }} = useNode((node) => ({
     selected: node.events.selected,
   }));
 
