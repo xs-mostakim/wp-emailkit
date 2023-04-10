@@ -252,9 +252,12 @@ input:-webkit-autofill {
   margin-bottom: 10px;
   padding: 10px 12px;
   box-shadow: #0000001a 0px 0px 5px 0px, #0000001a 0px 0px 1px 0px;
-  /* border: 1px solid #4f6fec; */
   border-radius: 4px;
+  border: 1px solid #fff;
   cursor: pointer;
+}
+.template-list-container .active-template{
+  border-color: #4f6fec;
 }
 .template-list-container .template-card-body .template-card-create-content{
   display: flex;

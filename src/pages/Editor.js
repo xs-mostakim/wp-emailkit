@@ -29,8 +29,8 @@ const EditorContainer = () => {
 
     useEffect(() => dispatch(fetchTemplates()), [isRefetch]);
 
-    // console.log(templateList[currentTemplate]?.object)
-    console.log(templateList.length, isRefetch);
+    console.log(templateList[currentTemplate]?.object, currentTemplate)
+    // console.log(templateList.length, isRefetch);
 
     return (
         <div className="email-builder-editor-container h-screen" >
