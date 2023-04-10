@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNode } from '@craftjs/core';
 
 export const DropdownMenu = ({ Options, title, propsName, CustomeWidth }) => {
     const [textSize, setTextSize] = useState('');
     const { actions: { setProp } } = useNode();
 
-    const handleChange = (event) => {
-        setTextSize(event.target.value);
-    };
-
     // For show Spacing UI
-    useEffect(() => {
-        setProp((props) => (props[propsName] = textSize));
-    }, [textSize]);
+    const handleChange = (event) => {
+        setTextSize(event.target.value)
+        setProp((props) => (props[propsName] = event.target.value));
+    }
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', width: `${CustomeWidth ? CustomeWidth : ''}` }}>

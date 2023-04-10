@@ -38,7 +38,7 @@ export const SocialIcon = (props) => {
           {renderCard
             ? renderCard.map((item) => (
               <td className=" m-2" key={item.id}>
-                <a href={item.url}>
+                <a href={item.url} target="_blank">
                   <img
                     src={item.icon}
                     style={{

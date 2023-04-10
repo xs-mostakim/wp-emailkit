@@ -20,7 +20,7 @@ import TabBody from "./TabBody";
 const tabElement = [
   { name: "Element", value: "1" },
   { name: "Template", value: "2" },
-  { name: "Body", value: "3" },
+  { name: "Body", value: "3", disabled: true },
 ];
 
 const tabItemList = [
@@ -67,7 +67,7 @@ const EditorSidebar = () => {
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList onChange={(_, newValue) => setValue(newValue)}>
-              {tabElement.map(item => <Tab key={item.value} label={<p className="tab-item-name">{item.name}</p>} value={item.value} />)}
+              {tabElement.map(item => <Tab key={item.value} label={<p className="tab-item-name">{item.name}</p>} value={item.value} disabled={item.disabled}/>)}
             </TabList>
           </Box>
           <div className='editor-sidebar-body'>
