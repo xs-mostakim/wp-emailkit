@@ -76,7 +76,7 @@ const App = () => {
                     />
                     <Viewport>
                         {!loading && (
-                            <Frame data={draft[0]?.email_object || ''}>
+                            <Frame data={draft[0]?.object || ''}>
                                 <Element
                                     canvas
                                     is={CanvasContainer}
