@@ -70,7 +70,7 @@ export const Header = ({ htmlExport }) => {
     const data = { id: "", html: htmlData, object: editorState }
 
     // const config = global.window?.parent?.emailKit?.config || {}
-    const localhost = 'http://localhost:3000/';
+    const localhost = 'http://localhost:4000/';
     const restNonce = 'f5003035cd';
 
     fetch(localhost + 'template-data/', {

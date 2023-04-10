@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 export const fetchTemplates = createAsyncThunk(
     'templates/fetchTemplates', async () => {
         try {
-            const localhost = 'http://localhost:3000/';
+            const localhost = 'http://localhost:4000/';
             const restNonce = 'f5003035cd';
 
             const response = await fetch(localhost + 'template-data', {
