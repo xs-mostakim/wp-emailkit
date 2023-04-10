@@ -55,10 +55,10 @@ const EditorSidebar = () => {
 
 
   return (
-    <Box className='editor-sidebar-container' style={{ display: enabled ? "block" : "none" }}>
+    <Box className='editor-sidebar-container' style={{ display: true ? "block" : "none" }}>
       <div className='editor-sidebar-header'>
         <p className='widgets'>Widgets</p>
-        <p className='toggle' onClick={handleStyleBar} ref={(ref) => connectors.select(connectors.hover(ref, null), null)}>
+        <p className='toggle' onClick={handleStyleBar}>
           <TbGridDots />
         </p>
       </div>

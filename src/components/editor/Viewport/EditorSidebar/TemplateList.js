@@ -1,44 +1,29 @@
-import { useState } from "react";
+import { MdOutlineDateRange } from "react-icons/md";
+import { useSelector, useDispatch } from "react-redux";
+import { currentTempate } from "../../../../rtk/features/templates/templateSlice";
+import { templatesData } from "../../../../rtk/api/templatesApi/templatesData";
 
 const TemplateList = () => {
-  const [searchInput, setSearchInput] = useState("");
+  const dispatch = useDispatch();
+  const { currentTemplate } = useSelector((state) => state.templates);
 
-  const countries = [
-    { name: "Belgium" },
-    { name: "India" },
-    { name: "Bolivia" },
-  ];
+  const templateList = templatesData()
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-  };
 
   return (
-    <div className="search">
-      <input
-        type="search"
-        name="search"
-        placeholder="Search"
-        onChange={handleChange}
-        value={searchInput}
-      />
-
-      {countries
-        .filter((country) => {
-          if (searchInput === "") {
-            return country;
-          } else if (
-            country.name.toLowerCase().includes(searchInput.toLowerCase())
-          ) {
-            return country;
-          }
-        })
-        .map((country, index) => (
-          <div key={index}>
-            <h1>{country.name}</h1>
-          </div>
-        ))}
+    <div className="template-list-container">
+      {templateList.length === 0 && <h5 className="no-data-show">No templates yet.</h5>}
+      {templateList.map((template, index) => <div onClick={() => dispatch(currentTempate(index))} key={template.id} className={`template-card-body ${currentTemplate === index ? 'active-template' : ''}`}>
+        <div className="template-card-create-content">
+          <MdOutlineDateRange size={18} />
+          <span className="template-card-calender">Created at <span>27-03-2023</span></span>
+        </div>
+        <div className="template-card-content">
+          <p className="template-card-heading">emailkit.io</p>
+          <p className="template-card-main-content">The features of GetGenie.AI at a glance:Need fully optimized and plagiarism-free content for your WooCommerce pages? This AI content writer is ready for it. Use this template of GetGenie AI that can offer instantly optimized
+          </p>
+        </div>
+      </div>)}
     </div>
   );
 };
