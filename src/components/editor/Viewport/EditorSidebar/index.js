@@ -58,7 +58,7 @@ const EditorSidebar = () => {
     <Box className='editor-sidebar-container' style={{ display: true ? "block" : "none" }}>
       <div className='editor-sidebar-header'>
         <p className='widgets'>Widgets</p>
-        <p className='toggle' onClick={handleStyleBar}>
+        <p className='toggle' onClick={handleStyleBar} ref={(ref) => connectors.select(connectors.hover(ref, null), null)}>
           <TbGridDots />
         </p>
       </div>
@@ -67,7 +67,7 @@ const EditorSidebar = () => {
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList onChange={(_, newValue) => setValue(newValue)}>
-              {tabElement.map(item => <Tab key={item.value} label={<p className="tab-item-name">{item.name}</p>} value={item.value} disabled={item.disabled}/>)}
+              {tabElement.map(item => <Tab key={item.value} label={<p className="tab-item-name">{item.name}</p>} value={item.value} disabled={item.disabled} />)}
             </TabList>
           </Box>
           <div className='editor-sidebar-body'>
