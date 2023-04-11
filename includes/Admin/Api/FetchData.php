@@ -45,7 +45,7 @@ class FetchData {
 			'post_status'    => 'publish',
 			'orderby'    => 'date',
 			'order'    => 'DESC',
-            'posts_per_page' => 1,
+            'posts_per_page' => -1,
 
 		);
   

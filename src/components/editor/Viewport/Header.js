@@ -62,7 +62,7 @@ export const Header = ({ htmlExport }) => {
     // console.log(htmlData, "export");
 
 
-    const data = { id: "", html: htmlData, object: editorState }
+    const data = { html: htmlData, object: editorState }
     console.log(data);
 
     try {

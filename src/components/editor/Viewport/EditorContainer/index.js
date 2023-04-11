@@ -97,7 +97,7 @@ const EditorContainer = () => {
                 />
                 <Viewport>
                     {!loading && (
-                        <Frame data={templateList[currentTemplate]?.object || ''}>
+                        <Frame>
                             <Element
                                 canvas
                                 is={CanvasContainer}
