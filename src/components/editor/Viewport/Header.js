@@ -59,10 +59,11 @@ export const Header = ({ htmlExport }) => {
 
 
     const htmlData = htmlFromProps.outerHTML;
-    console.log(htmlData, "export");
+    // console.log(htmlData, "export");
 
 
     const data = { id: "", html: htmlData, object: editorState }
+    console.log(data);
 
     try {
       const config = global.window?.parent?.emailKit?.config || {}
