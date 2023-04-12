@@ -49,51 +49,9 @@ class MetaBox
     /**
      * MetaBox Template
      */
-    public function emailTemplate($object)
+    public function emailTemplate()
     {
-
-        wp_nonce_field(basename(__FILE__), "meta-box-nonce");
-
-?>
-        <div style="margin-top:20px;">
-            <label for="email_template_subject" style="font-weight:bold">Email Subject</label> <br><br>
-
-            <input type="text" name="email_template_subject" size="30"  style="width:100% !important;" value="<?php echo esc_html(get_post_meta($object->ID, "email_template_subject", true)); ?>"> 
-            <br> <br>
-
-            <label for="email_template_type" style="font-weight:bold">Email Template Types</label> <br> <br>
-
-            <select name="email_template_type" style="width:100% !important;">
-            <option value="">Select Template Types </option>
-                <?php
-
-                foreach ($this->template_types as $key => $template_type) {
-                ?>
-                    <option value="<?php echo esc_attr($key); ?>" <?php echo esc_html($key == get_post_meta($object->ID, "email_template_type", true) ? 'selected' : ''); ?>>
-                        <?php echo esc_attr($template_type); ?> </option>
-                <?php } ?>
-            </select> <br> <br>
-
-            <label for="email_template_content_html" style="font-weight:bold">Email Template HTML</label> <br><br>
-
-            <textarea rows="10" cols="50" name="email_template_content_html" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email_template_content_html", true)); ?></textarea>
-            <br> <br>
-            <button class="btn contrast-switch">Edit-Email-Template</button>
-             <br> <br>
-            
-
-            <label for="email_template_content_object" style="font-weight:bold">Email Template Object</label> <br><br>
-
-            <textarea rows="5" cols="20" name="email_template_content_object" style="width:100% !important;"><?php echo esc_html(get_post_meta($object->ID, "email_template_content_object", true)); ?></textarea>
-            <br> <br>
-
-            <label for="email_template_status" style="font-weight:bold">Status(Active/Inactive): </label>
-            <?php
-            $status = esc_html(get_post_meta($object->ID, "email_template_status", true));
-            $checked_value = $status == 1 ? "checked" : ""; ?>
-            <input name="email_template_status" type="checkbox" <?php echo esc_attr($checked_value); ?>>
-        </div>
-
+    ?>
 <iframe src="<?php echo EMAILKIT_URL . 'out/index.html' ?>" width="100%" height="800" frameborder="0"></iframe>
 <?php
     }
