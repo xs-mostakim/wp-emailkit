@@ -42,6 +42,7 @@ class Admin {
 
         new Admin\Api\TemplateData();
         new Admin\Api\FetchData();
+        new Admin\Api\UpdateData();
 
         new Admin\metafield\StyleLoad();
 

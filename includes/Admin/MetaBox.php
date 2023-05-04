@@ -131,7 +131,7 @@ class MetaBox
        
 
         if(isset($_POST["email_template_status"])){
-            $type = $_POST["email_template_status"];
+            $type = $_POST["email_template_type"];
             $this->deactivateTemplateTypes($type);
             update_post_meta($post_id, 'email_template_status', true);
         } else {
