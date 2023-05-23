@@ -12,11 +12,11 @@ class EmailConfig {
 
     function mailtrap($phpmailer) {
         $phpmailer->isSMTP();
-        $phpmailer->Host = 'smtp.mailtrap.io';
+        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
         $phpmailer->SMTPAuth = true;
         $phpmailer->Port = 2525;
-        $phpmailer->Username = '385fd4acab0c89';
-        $phpmailer->Password = '6cf33716946c78';
+        $phpmailer->Username = 'e3f128bfc717ac';
+        $phpmailer->Password = 'f8d6d1b6740696';
     }
 
     
